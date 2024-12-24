@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // function add(x,y) {
+      //     console.log(`result 는 ${x}+${y}=${x+y}`)
+      // }
+      // add(3,4)
+      function calc(fn) {
+        // fn(10,20)
+        console.log(fn(20, 30));
+      }
+      calc((x, y) => {
+        return x + y;
+      });
+      //익명함수가 직접 올수있음
+      //리턴값이 있으면 return 안씀
+      //화살표함수는 값이 있으면 무조건 리턴으로 봄
+      // console.log(`result 는 ${x}+${y}=${x+y}`)
+      // return x,y;
+    </script>
+  </head>
+  <body></body>
+</html>

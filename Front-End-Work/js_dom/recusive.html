@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //반복문 해결 어려운 알고리즘 : 하노이 탑,이진트리 검색...
+        //4!==4*3*2*1==24
+        //3!==3*2*1==6
+        //2!==2*1==2
+        //1!==1
+        //0!==1
+        function fact(num){
+            //return (n<2) ? 1: n*fact(n-1);
+            if (num<=1)
+                return 1;
+            else
+                return num*fact(num-1);
+        }
+        console.log(fact(4));
+        //function main(){
+            //while(true)
+            //stack 메모리 1MB
+            //console.log('재귀 호출');
+           //main();
+        //}
+       // main(); //java 는 stack overflow 라고 뜸
+    </script>
+</body>
+</html>

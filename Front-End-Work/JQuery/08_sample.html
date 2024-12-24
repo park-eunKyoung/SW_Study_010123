@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+          background: #ece023;
+          width: 40px;
+          height: 40px;
+          margin: 2px;
+          float: left;
+          display: none;
+          text-align: center;
+        }
+      </style>
+    </head>
+    <body>
+      <button id="view">보이기</button>
+      <button id="onOff">toggle</button>
+      <div id="1">click1</div>
+      <div id="2">click2</div>
+      <div id="3">click3</div>
+      <div id="4">click4</div>
+      <div id="5">click5</div>
+      <script>
+          //재귀함수(호출):recusive
+        $('#view').click(function () {
+          $('div').first().show('slow', function showNext() {
+              console.log($(this)); //현재 작업중인 엘리먼트
+              $(this).next('div').show('fast', showNext);
+            }); //show End
+        }); //click end
+
+        //토글버튼
+        // $('#onOff').click(function(){
+        //    $('div').toggle('slow',function(){
+        //     let view = $('div').css('display');
+        //     if(view=='none'){
+        //         $('#onOff').text('ON');
+        //     }else{
+        //         $('#onOff').text('OFF');
+        //     };
+        //    });
+        // });
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- fatch : 바닐라 js
+        axios 라이브러리 : 비동기 통신  
+        jQuery.ajax() : 비동기 통신
+    -->
+  </head>
+  <body>
+    <h1>영화제목1</h1>
+    <img src="" alt="" width="200" />
+    <h1>영화제목2</h1>
+    <img src="" alt="" width="200" />
+    <script>
+      //비동기통신 : ajax
+      function fetchMovies1() {
+        axios({
+          method: 'get', // 'post'(변경),'delete'(삭제)
+          url: 'https://www.omdbapi.com',
+          params: { apikey: '7035c60c', s: 'frozen' },
+          responseType: 'json', //기본값(json)
+        })
+          .then(function (resp) {
+            console.log(resp);
+            const h1Els = document.querySelectorAll('h1');
+            const imgEls = document.querySelectorAll('img');
+            //console.log(imgEl);
+            h1Els[0].textContent = resp.data.Search[0].Title;
+            imgEls[0].src = resp.data.Search[0].Poster;
+            //jobs 출력
+            axios({
+              method: 'get', // 'post'(변경),'delete'(삭제)
+              url: 'https://www.omdbapi.com',
+              params: { apikey: '7035c60c', s: 'jobs' },
+              responseType: 'json', //기본값(json)
+            })
+              .then((resp) => {
+                console.log(resp);
+                h1Els[1].textContent = resp.data.Search[1].Title;
+                imgEls[1].src = resp.data.Search[1].Poster;
+              })
+              .catch((err) => console.log('err:', err));
+          })
+          .catch((err) => console.log('err:', err));
+
+        //     .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+        //    .then(function(resp){
+        //         console.log(resp);
+        //         const h1El = document.querySelector('h1')
+        //         const imgEl = document.querySelector('img')
+        //         console.log(imgEl);
+        //         h1El.textContent = resp.data.Search[0].Title;
+        //         imgEl.src=resp.data.Search[0].Poster
+        //     })
+        //     .catch(err=>console.log('err:',err))
+      }
+      //콜백지옥 (callback hell)
+
+      //fetchMovies1();
+
+      //콜백 지옥 해결
+      async function fetchMovies2() {
+        const h1Els = document.querySelectorAll('h1');
+        const imgEls = document.querySelectorAll('img');
+        let resp = await axios.get(
+          'https://www.omdbapi.com/?apikey=7035c60c&s=frozen'
+        );
+        console.log('resp', resp); // JSON.parse(resp)생략
+        h1Els[0].textContent = resp.data.Search[0].Title;
+        imgEls[0].src = resp.data.Search[0].Poster;
+        //jobs
+        resp = await axios.get(
+          'https://www.omdbapi.com/?apikey=7035c60c&s=jobs'
+        );
+        console.log('resp', resp);
+        h1Els[1].textContent = resp.data.Search[1].Title;
+        imgEls[1].src = resp.data.Search[1].Poster;
+        //await 을 쓰면 비동기처리여도 순차적으로 처리가능
+      }
+      //fetchMovies2();
+      //then,catch 로 콜백지옥 해결
+      async function fetchMovies3() {
+        const h1Els = document.querySelectorAll('h1');
+        const imgEls = document.querySelectorAll('img');
+        await axios
+          .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+          .then((resp) => {
+            console.log('resp', resp);
+            h1Els[0].textContent = resp.data.Search[0].Title;
+            imgEls[0].src = resp.data.Search[0].Poster;
+          })
+          .catch((err) => console.log('err:', err));
+        //jobs
+        await axios
+          .get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+          .then((resp) => {
+            console.log('resp', resp);
+            h1Els[1].textContent = resp.data.Search[1].Title;
+            imgEls[1].src = resp.data.Search[1].Poster;
+          })
+          .catch((err) => console.log('err:', err));
+      }
+      //fetchMovies3();
+
+      async function fetchMovies4() {
+        const h1Els = document.querySelectorAll('h1');
+        const imgEls = document.querySelectorAll('img');
+        try{
+        await axios
+          .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+          .then((resp) => {
+            console.log('1번resp', resp);
+            h1Els[0].textContent = resp.data.Search[0].Title;
+            imgEls[0].src = resp.data.Search[0].Poster;
+          })
+        //jobs
+        await axios
+          .get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+          .then((resp) => {
+            console.log('2번resp', resp);
+            h1Els[1].textContent = resp.data.Search[1].Title;
+            imgEls[1].src = resp.data.Search[1].Poster;
+          })
+        }
+        catch(err){
+            //1번또는 2번 비동기 에러처리
+            console.log('catch', err);
+            console.log('error next작업');
+        }finally{
+            console.log('무조건 실행하는영역');
+            
+        }
+      }
+      fetchMovies4();
+    </script>
+  </body>
+</html>

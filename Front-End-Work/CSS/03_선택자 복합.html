@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 일치선택자 : 순서가 바뀌면 안됨 */
+        span.orange{
+            color:red;
+        }
+        /* 자손선택자 */
+        div .orange{
+            color: aqua;
+        }
+        /* 자식선택자 */
+        ul>.orange{
+            color: blue;
+
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+          <li>사과</li>
+          <li>딸기</li>
+          <li class="orange">오렌지</li>
+        </ul>
+        <div>당근</div>
+        <p>토마토</p>
+        <span class="orange">오렌지</span>
+      </div>
+      <span class="orange">오렌지</span>
+</body>
+</html>

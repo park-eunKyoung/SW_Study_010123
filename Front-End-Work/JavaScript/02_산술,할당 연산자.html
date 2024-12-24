@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //산술연산자
+        console.log(1+2);
+        console.log(5-7);
+        console.log(parseInt (10/3));
+        console.log(10%3);
+        //대입(할당)연산자, assignment operator :에러문
+        let a = 2;
+        a+=2;
+        console.log('a :',a);
+        //증감연산자
+        console.log('a++ :',a++)
+        //비교연산자
+        const b = 1; //상수변수 final int b=1;
+        const c = 3;
+        console.log(b<c);
+        console.log(b>c);
+
+        function isEquls (x,y) {
+            return x===y;
+        }
+        //== 형변환 후 비교, === java 의 ==와 동일
+        console.log(isEquls(2,'2')); // false
+        console.log(isEquls(2,2)); // true
+
+        //논리연산자 0,false,0아닌것 true
+        console.log('&&', true&&true);
+        console.log('&&', true&&false);
+        console.log('||', 1||0);
+        console.log('||', !(1||0));
+        //단축회로
+        let num = 10;
+        console.log(true || num++);
+        console.log(false&&num++);
+        console.log(num);
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

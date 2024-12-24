@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="버튼" id="button">
+    <input type="button" value="버튼2" onclick="fct()">
+    <script>
+        function fct(){
+            console.log('btn this:',this); // window 객체
+            console.log('btn:',btn); //button 객체
+        }
+        //this
+        //일반함수는 (호출위치)에 따라 this가 다르다.
+        //화살표 함수가 정의되는 함수 범위에서 this 정의
+        //결론 : this 사용시 화살표함수 사용금지
+        const kim={
+            name:'kim',
+            normal : function(){
+                console.log(this.name); //'kim'
+                console.log(this); //kim객체     
+            },
+            arrow:()=>{
+                console.log(this.name);
+                console.log(this); //window객체
+            }
+        };
+        kim.normal();
+        kim.arrow();
+
+        const timer={
+            name:'kim',
+            timeout:function(){
+                setTimeout(()=>{
+                    console.log('t:',this.name,this);
+                    
+                },2000)
+                // setTimeout(function(){
+                //     console.log('t:',this.name,this);
+                    
+                // },2000)
+            }
+        }
+        timer.timeout();
+
+        const btn=document.getElementById('button');
+        btn.addEventListener('click',kim.normal.bind(kim))
+        btn.addEventListener('click',kim.arrow);
+        btn.addEventListener('click',kim.arrow.bind(kim))
+        </script>
+</body>
+</html>

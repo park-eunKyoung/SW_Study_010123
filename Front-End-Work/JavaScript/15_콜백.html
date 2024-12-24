@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //콜백(callBack)
+        //함수의 인자로 사용되는 함수
+        //setTimeout(함수, 시간)
+        function timeout(cb){
+            setTimeout(()=>{
+            console.log('hello!');
+            cb(); //콜백 호출
+        },3000);
+        }
+        timeout(function(){console.log('콜백함수호출');
+        })
+        //콜백함수 사용 목적
+        //1.익명(화살표)함수가 timeout 함수의 인자로 사용됨
+        //2.timeout 실행시 특정위치에서 실행하는것을 보장할수있음
+
+        abc((n)=>(console.log(n)));
+    
+        function abc(f){
+            
+                f(100);
+                f(200); 
+        }
+           
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

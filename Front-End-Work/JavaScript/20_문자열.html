@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //String : '' "" ``
+        //String.prototype.indexOf();
+        let result ='hello world!'.indexOf('world')
+        console.log(result); //첫글자 index는 0부터 시작
+        result ='hello world!'.indexOf('cha')
+        console.log(result); //검색 실패  -1
+
+        const str ='대한민국 최고';
+        console.log(str.length);
+        console.log(str.indexOf('만세') != -1);
+        console.log(str.slice(0,3)); //대한민(index:0~2)
+        console.log(str.slice(2,-1)); //민국 최(index:2~뒤쪽 1문자 미만
+
+        console.log(str.replace('대한민국','한국')); //원본 안바뀜
+        console.log('str:',str); //대한민국 최고 원본그대로
+        console.log(str.replace('최고','')); //대한민국,삭제효과
+        
+        const str2='        Hello  world         ';
+        console.log(str2.trim());
+
+        const email = 'surech@nuri.con';
+        console.log(email.match(/.+(?=@)/));
+        console.log(email.match(/.+(?=@)/)[0]);
+
+        let name='lee';
+        console.log(name.startsWith('l'));
+        
+        
+        
+        
+        
+        
+        
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //호이스팅(Hoisting)
+        //함수 선언부가 유효범위 최상단으로 끌어올려지는 현상
+        //큰규모일때 지역변수>전역변수
+        //작은규모일때 전역변수 편리 
+        const a = 7; //전역변수
+        let gv=7;
+        
+        let main=function () {
+        double();
+        console.log('----------');
+        let reval=double();
+        console.log('reval :',reval)
+
+        console.log('전역변수 :',gv);
+        };
+         main();
+        function double(){
+            let lv=100; // 호출 시 마다 매번 생성
+            console.log(--gv*2);
+            console.log('지역변수:',++lv);
+            return lv //리턴 후 사라짐
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

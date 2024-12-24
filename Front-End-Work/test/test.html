@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #headline {
+            background-color: blue;
+        }
+        #navline {
+            float: left;
+            width: 30%;
+            height:400px;
+            border: 3px solid black;
+            box-sizing: border-box;
+        }
+        form{
+            display: grid;
+            justify-content: center; 
+        }
+        #sectionline{
+            float: right;
+            width: 70%;
+            height: 400px;
+            border: 3px solid black;
+            box-sizing: border-box;
+        }
+        #footerline{
+            clear: left;
+            background-color: yellow;
+            border: 3px solid black;
+        }
+        ul{
+           list-style: none;
+        }
+        li:hover{
+            background-color: red;
+        }
+        li {
+            display: inline-block;
+            margin-right: 40px;
+            color:white
+        }
+        input{
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+   <header id="headline">
+   <ul>
+    <li>home</li>
+    <li>회원가입</li>
+    <li>로그인</li>
+    <li>contact</li>
+   </ul> 
+   </header>
+   <nav id="navline">
+    <h3>nav 영역</h3>
+   </nav>
+   <section id="sectionline">
+    <h3>section 영역</h3>
+    <form action="">
+    <input type="text" name="id" id="id" placeholder="이메일"> 
+    <input type="text" name="pw" id="pw" placeholder="비밀번호"> 
+    <input type="text" name="name" id="name" placeholder="이름"> 
+    <input type="text" name="tel" id="tel" placeholder="전화번호"> 
+    <input type="button" value="가입"></input>
+    </form>
+   </section>
+   <footer id="footerline">
+    <h3>footer 영역</h3>
+   </footer>
+
+
+
+
+</body>
+</html>

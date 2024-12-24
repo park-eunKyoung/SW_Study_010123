@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //age(property) 속성: 10값, name 속성 : 'hong'값
+        //java의 this 는 현재 실행중인 객체
+        const kim={age:10,name:'hong',
+            showInfo:function(){
+                //console.log('이름:'+this.name+ ' 나이 :'+this.age);
+                console.log(`이름:${this.name}, 나이:${this.age}`)
+            },
+            getFullInfo:function(){
+               return `info=${this.age}, ${this.name}, ${this.gender}`;
+            
+            }
+        };
+        //kim.gender = '남자';
+        //console.log(typeof kim,kim);
+        //kim.showInfo();
+        //kim.getFullInfo();
+        //console.log(kim.getFullInfo());
+
+        //생성자 함수를 이용한 객체 생성,java 와 유사
+        function User(age,name){
+            this.age=age;
+            this.name=name;
+            this.showInfo=function(){
+            //console.log('이름:'+this.name+ ' 나이 :'+this.age);
+            //     console.log(`이름:${this.name}, 나이:${this.age}`)
+            // };
+            // //메모리 비효율적(객체마다 함수객체를 생성함, 상속되지않음)
+            // this.getFullInfo=function(){
+            //    return `info=${this.age}, ${this.name}`;
+             };
+        }
+        //object 내장 객체의 prototype 속성 toString()재정의
+        User.prototype.toString=function(){
+            return `info=${this.age},${this.name}`;
+        }
+        //js스크립트 prototype 기반 언어이다.
+        //메모리 효율적
+        //User 함수의 prototype 속성에 함수객체를 1번만 생성, 상속도
+        User.prototype.getFullInfo=function(){
+            return `info=${this.age},${this.name}`;
+        }
+        //User 객체 생성
+        // const lee=new User(20,'lee');
+        // console.log(lee);
+        // //lee.showInfo();
+        // console.log(lee.getFullInfo());
+        
+        // const choi=new User(30,'choi');
+        // console.log(choi);
+        // choi.showInfo();
+        // document.write(lee); //toString 생략->object 소속
+
+
+        Array.prototype.myMethod=()=>{
+            console.log('Array내장객체 메소드 추가');
+            
+        }
+        new Array(10,20,30).myMethod();
+        [10,20,30].myMethod();
+        const arr=[1,2,3];
+        console.log(arr);
+        console.log(arr.includes(3));
+        console.log(arr.includes(30));
+        
+        arr.forEach(function(item){
+            console.log(item);
+        });
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

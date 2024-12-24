@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //즉시실행함수
+        //IIFE, Immediately-Invoked Function Expression
+        const a =7;
+        // function double(){  //함수 정의
+        //     console.log(a*2);
+        // }
+        // double(); // 함수 호츌(call)
+
+        //함수를 정의함과 동시에 호출, 세미콜론(;) 빠지면 err
+        (function double(){  //함수 정의
+            console.log(a*2);
+        }) (); // 함수 호츌(call)
+        (function double(){  //함수 정의
+            console.log(a*2);
+        }
+        ()); // 함수 호츌(call)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

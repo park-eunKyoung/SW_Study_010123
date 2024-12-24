@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //데이터 불변성(immutability)
+        //원시 데이터 : String, Number, Boolean, undefined, null
+        //(값이 같으면 같은 참조값을 갖는다.)
+        //(결국, 원시 데이터는 참조값보다는 상수처럼 이해하면 된다.)
+        //참조형 데이터: Object, Array, Function
+        //(참조형은 불변성이 없다.)
+        //(결국, 참조형의 새로운 객체는 새로운 참조값을 갖는다. )
+
+        // let a=1; //let a=new Number(1) -> 아무리 객체로 감싸도 상수임
+        // let b=4;
+        // console.log(a,b,a===b);
+        // b=a;
+        // console.log(a,b,a===b);
+        // console.log(typeof a);
+        // let b=new Number(1);
+        // console.log(typeof b);
+        // let c=1;
+        // console.log(a,c,a===c);
+
+        // const num = 10.345; //상수로 보자  변경이 안되는 객체 
+        // //일시적으로 new Number(10.345)객체로 변환후 toFixed()로 호출
+        // console.log(num.toFixed(2));
+        // console.log(10.345.toFixed(2));
+
+        let a={k:1} //배열은 새로 배열을 만들지않고 값을 변경할 수 있음
+        let b={k:1}
+        console.log(a,b,a===b);
+        a.k=7;
+        b=a;
+        console.log(a,b,a===b);
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./j/jquery-3.7.1"></script>
+    <script>
+        $(function(){
+            const $btnEl=$('#btn'); //jQ객체
+            const btnEl=$('#btn')[0]; //js객체
+            //$btnEl.html('click')
+            btnEl.innerHTML='click';
+
+            $('#btn').click(function(){
+            $('#result').html('새로쓰기');
+        });
+        });
+    </script>
+</head>
+<body>
+    <div id="result"></div>
+    <button id="btn">추가</button>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #bg{
+            /* magin 속성 없이 가로,세로 정렬방법 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: black;
+            opacity: .5;
+            /* width: auto; */
+            height: 100vh;
+        }
+        #popup {
+            text-align: center;
+            width: 500px;
+            height: 600px;
+            background-color: yellow;
+
+            /* width 속성이 있어야함. 
+            부모를 기준으로 가로 가운데 정렬 */
+            /* margin: 0 auto; */
+
+        }
+    </style>
+</head>
+<body>
+ <div id="bg">
+    <div id="popup">
+        <h2>공지사항-LightBox</h2>
+    </div>
+ </div>
+</body>
+</html>

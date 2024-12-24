@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 300px;
+            height: 400px;
+            background-color: orange;
+            /* 경로에 특수문자가 있을 경우 ""로 묶을것 */
+            background-image: url("../img/heart-1972651_640.png");
+            /* 이미지 비율이 깨짐 */
+            /* background-size: 300px 400px; */
+            /* 이미지 사이즈(비율은 유지되고 확대,축소됨): 기본값(auto),px,
+         cover(배경사이즈의 더 넓은너비에 이미지맞춤), 
+         contain(더 짧은너비에 맞춤)*/ 
+            background-size: contain;
+            background-repeat: no-repeat;
+            /* background-position-x: 100px; */
+            /* background-position-y: center; */
+
+            /* top, bottom, left, right, center */
+            /* background-position: top right; */
+
+            /* 스타벅스 사이트 예시, 스크롤시 이미지 고정 */
+            background-attachment: fixed;
+        }
+        body{
+            height: 3000px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>

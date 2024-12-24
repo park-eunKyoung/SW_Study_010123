@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="jsonData.js"></script>
+  </head>
+  <body>
+    <!-- json 형태의 문자열 : 속성명에 "" 생략하면 에러남 -->
+    <textarea id="jText" cols="60" rows="10">
+        {
+            "employee":[
+                {"firstName":"Jhon","lastName":"Doe"},
+                {"firstName":"Anna","lastName":"Smith"},
+                {"firstName":"Peter","lastName":"Jhones"}
+            ]            
+        }
+            </textarea
+    >
+    <!--http://json.parser.online.fr-->
+    <br />
+    <button id="jWrite">입력</button>
+    <br />
+    <input id="eNum" type="text" value="" />
+    번째 사원 이름
+    <button id="jRead">추출</button>
+    <br />
+    <h2 id="result"></h2>
+  </body>
+</html>

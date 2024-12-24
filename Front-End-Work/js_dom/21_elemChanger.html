@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1"></p>
+    <button id="btn">innerHTML</button><br />
+    <img id="image" src="../img/img01.jpg" alt="버섯돌이" /><br />
+    <button id="imgChanger">이미지 변경</button>
+
+    <script>
+        const pEl=document.getElementById('p1');
+        const btn1=document.getElementById('btn');
+        btn1.addEventListener('click',()=>{
+            //객체속성(property)은 태그속성(Attribute)이 아니다.
+            pEl.innerHTML='동해물과 <b>백두산</b>이';
+        })
+        const imgEl=document.getElementById('image');
+        const btn2=document.getElementById('imgChanger');
+        btn2.addEventListener('click',()=>{
+            //객체속성으로 변경
+            console.dir(imgEl);
+            //imgEl.src="../img/img02.jpg";
+            imgEl.setAttribute('src','../img/img02.jpg')
+            console.log(imgEl.getAttribute('src'));
+            
+            
+        });
+
+    </script>
+</body>
+</html>

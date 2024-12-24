@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // function Member(name, age) {
+      //             this.name = name
+      //             this.age = age
+      //             //메모리 비효율, protoType 함수로 바꾸어 볼것(생성자 외부에서)
+      //             this.setName = function (name) {
+      //                 this.name = name
+      //             }
+      //         }
+      //         Member.prototype.showInfo = function () {
+      //             console.log(`이름:${this.name}, 나이:${this.age}`);
+      //         }
+      //         //Object객체 toString메소드 재정의
+      //         Object.prototype.toString = function () {
+      //             return `name:${this.name}, age:${this.age}`;
+      //         }
+      //         const kim = new Member('kim', 10)
+      //         const lee = new Member('lee', 20)
+      //         console.log(kim);
+      //         kim.setName('kim2')
+      //         kim.showInfo();
+      //         console.log(kim.toString());
+      //         document.write(kim)  //toStirng 생략가능
+
+      //         //문제>위 소스를 리터럴{} 객체로 변환할것.
+
+      const kim ={
+        name : 'kim',
+        age : 10,
+        //메모리 비효율, protoType 함수로 바꾸어 볼것(생성자 외부에서)
+        setName : function (name) {
+          this.name = name;
+        },
+      };
+      kim.gender='여자';
+     Object.prototype.showInfo =function(){
+        console.log(`이름:${this.name}, 나이:${this.age}`);
+      };
+      //Object객체 toString메소드 재정의
+      Object.prototype.toString = function () {
+        return `name:${this.name}, age:${this.age}`;
+      };
+      console.log(kim);
+      kim.setName('kim2');
+      kim.showInfo();
+      console.log(kim.toString());
+      document.write(kim); //toStirng 생략가능
+
+      //문제>위 소스를 리터럴{} 객체로 변환할것.
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //let arr=[];
+      //console.log(typeof arr,arr);
+      //let arr = [10, 20, 30];
+      // for (i = 0; i < arr.length; i++) {
+      //   console.log(arr[i]);
+      // }
+
+      // getsumArr(arr);
+      // getsumArr([40, 50, 60, 70]);
+
+      // function getsumArr(arr) {
+      //   let sum = 0;
+      //   // arr.forEach(element => sum += element);
+      //   for (let element of arr ) {
+      //     sum+=element
+      //   }
+      //   console.log(sum)
+      // }
+
+      //Array : 배열 객체
+      const numbers = [1, 2, 3, 4]; //요소(element)==항목(item)
+      const fruits = ['Apple', 'Banana', 'Cherry'];
+      console.log(numbers.length);
+      console.log(fruits.length);
+      console.log([].length);
+
+      //concat(): 배열 병합
+      console.log(numbers.concat(fruits));
+      console.log(numbers);
+      console.log(fruits);
+
+      //forEach() : 배열의 길이만큼 콜백함수를 호툴, 리턴값 없음
+      fruits.forEach((element, index) => {
+        console.log(`${element}-${index}`); //arr 매개변수 사용할 수없음
+      });
+      //console.log(result);
+
+      //for of 를 사용해서 과일 하나씩 출력
+      for (const fruit of fruits) {
+        console.log(fruit);
+      }
+      //map(): 배열의 길이 만큼 콜백함수 호출값, 리턴값 배열(중요)
+      //매핑 : 대응 hashMap.put(1,'cha') hashMap.put(2,'hong')
+      // const array = fruits.map(function (fruit, idx) {
+      //   return `${fruit}-${idx}`;
+      //   return fruit.length;
+      //   return { id: idx, name: fruit };
+      // });
+      // console.log(array);
+
+
+      //소괄호 생략불가
+     // const array = fruits.map((fruit, idx)=>({id:idx, name:fruit}));
+       const array = fruits.map((fruit,idx)=>{
+        return{id:idx, name:fruit};
+       });
+     // return `${fruit}-${idx}`;
+        // return fruit.length;
+       //객체 반환
+      
+      console.log(array);
+      // for(const element of array){
+      //   console.log(element);
+
+      //for of(요소가 많을때, forEach 보다 빠름)
+      // for(let elem of arr){
+      //   console.log(elem);
+      // }
+      //for in 반복문
+      // for(let idx in arr){
+      //   console.log(arr[idx]);
+      // }
+
+      // let size=arr.length
+      // for(i=0;i<arr.length;i++){
+      //   console.log(arr[i]);
+      // }
+    </script>
+  </body>
+</html>

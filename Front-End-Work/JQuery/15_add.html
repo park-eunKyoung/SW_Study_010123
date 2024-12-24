@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <ol>
+      <li>List item 1</li>
+    </ol>
+    <button id="apnd">Append</button>
+    <button id="ppnd">Prepend</button>
+    <button id="bef">before</button>
+    <button id="aft">after</button>
+    <button id="create">Create</button>
+
+    <script>
+      let i = 1;
+      $('#aft').click(function () {
+        i++;
+        $('ol').before('<li>List item ' + i + '</li>');
+      });
+
+      $('#bef').click(function () {
+        i++;
+        $('ol').before('<li>List item ' + i + '</li>');
+      });
+
+      $('#apnd').click(function () {
+        i++;
+        $('ol').append('<li>List item ' + i + '</li>');
+        $(`<li>List item ${i}</li>`).appendTo('ol');
+      });
+      $('#ppnd').click(function () {
+        i++;
+        $(`<li>List item ${i}</li>`).appendTo('ol');
+      });
+      $('#create').click(function () {
+        //<input type="text" value="aaa" readonly disabled>
+        let $inputEl = $('<input type=text>');
+        console.log($inputEl);
+        //document.body.appendChild(객체)
+        $('body').append($inputEl);
+        $inputEl.val('aaa').prop('disabled', true).attr('type', 'password');
+      });
+    </script>
+  </body>
+</html>

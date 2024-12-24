@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      div {
+        background-color: green;
+        width: 100px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>List 01</p>
+    <p>List 02</p>
+    <p>List 03</p>
+    <p>List 04</p>
+    <p>List 05</p>
+    <input id="onf" type="button" value="OFF" />
+
+    <hr>
+    <div>메뉴</div>
+    <ul>
+      <li>List 01</li>
+      <li>List 02</li>
+      <li>List 03</li>
+      <li>List 04</li>
+      <li>List 05</li>
+    </ul>
+    <button id="onOff">OFF</button>
+    <button id="toggle">토글버튼</button>
+    <script>
+      $(function () {
+        $('#toggle').click(function(){
+            //show()<====>hide()
+            $('ul').toggle();
+        })
+
+        $('#onOff').click(function(){
+            //let view=$('ul').css('display'); //block  or  none
+            let view=$('ul').css('visibility'); //visible  or  hidden
+            //console.log(view);
+            if(view=='visible'){
+                $(this).text('ON');
+               // $('ul').css('display','none');
+                $('ul').css('visibility','hidden');
+            }else{
+                $(this).text('OFF');
+                //$('ul').css('display','block');
+                $('ul').css('visibility','visible');
+            }
+
+        })
+        // $('ul').hide();
+        // $('div').hover(
+        //   () => {
+        //     $('ul').show();
+        //   },
+        //   () => {
+        //     $('ul').hide();
+        //   }
+        // );
+      });
+    </script>
+
+    <script>
+      $(function () {
+        $('#onf').click(function () {
+          let value = $(this).val(); //ON or OFF
+          if (value == 'ON') {
+            $(this).val('OFF');
+            $('p').show(1000);
+          } else {
+            //OFF
+            $(this).val('ON');
+            $('p').hide(1000);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+         window.onload=()=>{
+           let buttons= document.querySelectorAll('button')
+           console.log(buttons);
+           for(let i=0; i<buttons.length;i++){
+            buttons[i].addEventListener('click',function(){
+                if(this.style.backgroundColor===''){
+                    this.style.backgroundColor=this.textContent;
+                }else{
+                    this.backgroundColor=''
+                }
+            })
+           }
+           //input 버튼
+           let inputButtons=document.querySelectorAll('input[type="button"]');
+           console.log(inputButtons);
+           inputButtons.forEach(button=>{
+            button.addEventListener('click',function(){
+                if(this.style.backgroundColor===''){
+                    this.style.backgroundColor=this.value;
+                }else{
+                    this.backgroundColor='';
+                };
+            });
+        });
+           }; 
+    </script>
+  </head>
+  <body>
+    <button id="b1">yellow</button>
+    <button id="b2">green</button>
+    <button id="b3">blue</button>
+    <hr />
+    <input type="button" value="yellow" id="btn1" />
+    <input type="button" value="green" id="btn2" />
+    <input type="button" value="blue" id="btn3" />
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //전개연산자(spread)
+        const fruits=['Apple','Banana','Cherry','Orange'];
+        console.log(fruits); //배열
+        console.log(...fruits); //문자열
+        console.log(fruits[0],fruits[1],fruits[2],fruits[3]);
+        const toObject =  (a,b,...c)=>({a,b,c});
+            //console.log(a,b,c);
+            //return {a:a,b:b,c:c}
+            //키와 값이 동일시 1번만 명시
+            //중괄호만 쓰면 함수의 {}인지, 객체의{}인지 헷갈림 ({})쓰기
+        const obj = toObject(...fruits);
+        console.log(obj);
+        
+        
+    </script>
+</body>
+</html>

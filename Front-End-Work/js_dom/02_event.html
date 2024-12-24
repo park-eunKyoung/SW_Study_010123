@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: aqua;
+      }
+    </style>
+
+    <script>
+      function afterLoding() {
+        console.log(document.querySelector('h3').textContent);
+      }
+      function getDay() {
+        document.getElementById('demo').innerHTML = new Date();
+      }
+      function mouseEvent(msg) {
+        //console.log(msg);
+        if(msg==='over'){
+            document.getElementById('over').textContent='mouse over'
+        }
+        if(msg==='out'){
+            document.getElementById('over').textContent='mouse out'
+        }
+      }
+      function focusEvent(msg){
+        const inputEl=document.querySelector('#keyOn');
+        console.dir(inputEl);
+        if(msg==='focus'){
+           inputEl.style.backgroundColor='pink'
+        }
+        if(msg==='blur'){
+            inputEl.style.backgroundColor='white'
+        }
+            }
+      function change(){
+        const inputEl=document.querySelector('#keyOn');
+        console.log(inputEl.value);
+        const h4El=document.getElementById('typing');
+        //h4El.innerHTML=inputEl.value;
+        //todo
+        const txtNode=document.createTextNode(inputEl.value)
+        h4El.appendChild(txtNode);
+        h4El.appendChild(document.createElement('br'));
+      }
+      function down(){
+        const inputEl=document.querySelector('#keyOn');
+        const h4El=document.getElementById('typing').textContent=inputEl.value;
+      }
+     const myCarOrder=function(){
+        const brand = document.getElementById('myCar').value
+        const h4El=document.getElementById('typing').textContent=brand;
+      
+     }
+    </script>
+  </head>
+  <body onload="afterLoding()">
+    <h3>오늘의 날짜: <span id="demo"> </span></h3>
+    <button onclick="getDay()">날짜추출</button>
+
+    <div
+      id="over"
+      onmouseover="mouseEvent('over')"
+      onmouseout="mouseEvent('out')"> </div>
+
+    <input type="text" name="" id="keyOn" 
+    onfocus="focusEvent('focus')"
+    onblur="focusEvent('blur')"
+    onchange="change()"
+    onkeydown="down()">
+    <h4 id="typing"> </h4>
+    <select id="myCar" onchange="myCarOrder()">
+        <option value="Audi">Audi</option>
+        <option value="BMW">BMW</option>
+        <option value="Kia">Kia</option>
+        <option value="Benz">Benz</option>
+    </select>
+  </body>
+</html>

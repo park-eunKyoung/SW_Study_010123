@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+      div#ex1 {
+        width: 300px;
+        height: 200px;
+        background-color: #59b1f6;
+      }
+      div#ex2 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ex1">
+      아이디: <input id="userid" type="text" name="userid" />
+      <br />
+      비밀번호: <input id="userpw" type="password" name="userpass" />
+      <div id="ex2"><p></p></div>
+      <button id="btn">로그인</button>
+    </div>
+
+    <script>
+      // $('#btn').click(function(){
+      //     //console.log($('#userid').val()==='');
+      //     $('#userid').val()==='';
+      //     $('#ex2').append('아이디입력바람');
+      // })
+      // $('#btn').on('click',val()==='',function(){
+      //     $('#ex2 p').append('아이디입력바람');
+      // })
+      // $('#btn').click($('#userid').val().lenght>4 .val().lenght<6 ,function(){
+      //     $('#ex2').text('아이디는 4~6자')
+      // })
+      $('#btn').click(function () {
+        let $id = $('#userid');
+        let msg;
+        if ($id.val() === '') {
+          msg = '아이디입력바람';
+        } else if ($id.val().length < 4 || $id.val().length >= 10) {
+          msg = '아이디는 4~9자';
+        } else {
+          msg = '아이디 입력 ok';
+        }
+        $('#ex2 p').html(msg).css('color', 'red');
+
+        $('div').hover(
+          () => $('p').html('로그인 해 주세요'),
+          () => $('p').html('')
+        );
+        $('input').focus(function () {
+          $(this).css('background-color', '#cccccc');
+        });
+        $('input').blur(function () {
+          $(this).css('background-color', '#ffffff');
+        });
+      });
+    </script>
+  </body>
+</html>

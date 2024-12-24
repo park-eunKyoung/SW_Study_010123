@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const numbers = [12, 1, 22, 13, 4];
+      const fruits = ['Banana', 'Apple', 'Cherry'];
+      //.join(): 메서드는 배열의 모든 요소를 쉼표나 지정된 구분 문자열로
+      // 구분하여 연결한 새 문자열을 만들어 반환합니다.
+      let result = numbers.join();
+      console.log(result);
+      result = numbers.join('-');
+      console.log(result);
+      result = numbers.join('');
+      console.log(result);
+      //
+      //delete numbers[2]; //비추
+      //numbers.splice(2,1); //권장
+      //console.log(numbers);
+      //numbers[2]='new'
+      //console.log(numbers);
+      //numbers.push({name:'cha',age:20});
+      //console.log(numbers);
+
+      //sort(): 원본데이터 변경됨
+      fruits.sort(); //문자 오름차순
+      console.log(fruits);
+      //문자열 내림차순(숫자는 안됨)
+      //방법1)
+      fruits.reverse();
+      console.log(fruits); //->권장
+
+      //방법2) 권장안함
+      //   fruits.sort(function (a, b) {
+      //    if (a < b) return 1; //return b-a; 문자열은 뺄셈이 안되므로 줄이면 안됨
+      //    if (a > b) return -1;
+      //    if (a === b) return 0;
+      //  });
+
+      //방법3)
+      //fruits.sort((a, b) => b.localeCompare(a))
+      //console.log(fruits);
+
+      //숫자 오름차순, 주의> 유니코드 순서에 따라서 값을 정렬함.
+      //numbers.sort();
+      //console.log(numbers);
+      //console.log(numbers.toString());
+
+      //숫자 오름차순 정렬
+      numbers.sort((a, b) => b-a);
+      console.log('내림',numbers);
+
+      numbers.sort((a,b)=>b-a).reverse();
+      console.log('오름',numbers);
+      
+
+    </script>
+  </body>
+</html>

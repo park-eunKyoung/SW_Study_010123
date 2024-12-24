@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>쿼리 셀렉터는 css의 셀렉터를 차용한 것이다.</p>
+    <p class="ex">하지만 복수개의 엘리먼트를 수용하지 못함.</p>
+    <span id="sample">span Tag</span>
+    <div>
+      <p>특정 요소의 자식 요소를 선택 가능</p>
+    </div>
+    <a href="https://www.naver.com" target="_self">네이버</a>
+    <br />
+    <a href="https://www.naver.com" target="_blank">네이버</a>
+
+    <button>p태그</button>
+    <button>p의 ex클래스</button>
+    <button>아이디</button>
+    <br />
+    <button>자식요소</button>
+    <button>속성</button>
+    <script>
+      let btns = document.querySelectorAll('button');
+      btns[1].addEventListener('click', function () {
+        document.querySelector('p.ex').style.backgroundColor = 'red';
+      });
+      btns[3].addEventListener('click', function () {
+        document.querySelector('div p').style.backgroundColor = 'gray';
+      });
+      btns[4].addEventListener('click', function () {
+        //document.querySelector('a[target="_blank"]').style.border = '5px solid green';
+       let aEls = document.querySelectorAll('a[target]');
+            for (const element of aEls) {
+                console.log(element);
+                element.style.border = '5px solid green'
+                
+            }
+      });
+    </script>
+  </body>
+</html>

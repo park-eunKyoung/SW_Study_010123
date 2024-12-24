@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Flex Container : 부모요소 */
+        .container {
+            background-color: rosybrown;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            /* 자식요소의 수평 정렬 방식 , flex-start, flex-end */
+            justify-content: center;
+            height: 400px;
+            /* 자식요소의 수직 정렬 방식 , 기본값 : stretch
+            단, flex-wrap : wrap; 설정할것*/
+            /* align-content: stretch; */
+
+
+            /* flex-wrap 설정없이도 가능 
+            자식요소를 한 줄마다 수직 정렬함, 많이씀*/
+            align-items: center;
+        }
+        .container .item {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            border: 3px dashed red;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+    </div>
+</body>
+</html>

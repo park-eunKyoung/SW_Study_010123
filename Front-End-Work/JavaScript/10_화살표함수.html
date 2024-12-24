@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const double = function (x) {
+        return x * 2;
+      };
+      // console.log('double :',double(7));
+      // const doubleArrow = (x)=>{return x*2}
+
+      //const doubleArrow = (x)=>{return x * 2}   비추
+      //한문장인데 return이 들어가면 중괄호 필수
+
+      //const doubleArrow =(x)=> {x+=10; return x*2;}
+      //두문장 이상일땐 중괄호 필수
+
+      //const doubleArrow = x => x*2;  강추
+      //return이 안들어간 간단한 한문장에 중괄호 사용하면 err
+      //const doubleArrow = (x) => console.log(x);
+      //const doubleArrow = () => 'aaaa';  강추 , ()생략불가
+      //const doubleArrow = () => [1,2,3];  강추
+
+      //화살표 함수로 객체{} 리턴시 ({}) 소괄호로 감싸줌
+      const doubleArrow = (age) => ({ id: 'aaa', pw: '1111', age: age });
+      //const doubleArrow = (x,y) => x+y;   강추, ()생략불가
+      doubleArrow(8);
+      console.log('doubleArrow :', doubleArrow(10));
+      //문제1> mdn-javascript-레퍼런스-내장객체Array-forEach
+      //메소드에서 불필요한 코드 삭제후 실행하기, 일반함수로 바꿔서 실행
+
+      //문제2>
+      const add = (a, b) => a + b;
+      let sub = (a, b) => a - b;
+      let mul = (a, b) => a * b;
+
+      console.log(add(1, 2));
+      console.log(sub(1, 2));
+      console.log(mul(1, 2));
+
+      //문제3>
+      let showData = (data) => console.log(data);
+      showData('hello');
+      //console.log(showData());
+      let showData2 = () => 100;
+      console.log(showData2());
+
+      //문제>
+    //   function abc(fn) {
+    //     for (let i = 0; i < 3; i++) {
+    //       document.write(fn() + '<br>'); //함수객체
+    //     }
+    //   }
+    //   abc(() => 100);
+      function forEach(fn){
+        const arr=[1,2,3]
+        for(let i=0;i<arr.length;i++){
+           fn(arr[i]);
+        }
+    }
+      forEach((element) => console.log(element));
+    
+
+      //문제>
+    //   let gugudan = (dan) => {
+    //     document.write('<br>======' + dan + '======<br>');
+    //     for (let i = 1; i < 10; i++) {
+    //       // document.write(`${dan}*${i}=${dan*i}<br>`)
+    //       document.write(dan + '*' + i + '=' + dan * i + '<br>');
+    //     }
+    //   };
+    //   gugudan(5);
+    </script>
+  </head>
+  <body></body>
+</html>

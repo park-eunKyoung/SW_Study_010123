@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+           /* width: auto; 기본값 , 부모(브라우저) 너비만큼  */
+           /* height: auto; 기본값 , 컨텐츠 높이만큼 */
+           /* width: 100px;
+           height: 100px;
+            background-color: orange; */
+        }
+        span {
+            /* width: auto; 컨텐츠(글자) 너비만큼 */
+            /* height: auto; 기본값 , 컨텐츠(글자) 높이만큼 */
+            /* width: 100px;
+            height: 100px;
+            background-color: aqua; */
+        }
+        /* 부모는 무조건 아래에 깔림 (레이어드) */
+        .parent {
+            /* 자식에서 max-width 설정시 부모는 width 는 auto 또는 크게 설정 */
+            /* width: auto; */
+            /* 자식에서 min-width 설정시 부모는 width 는 작게 설정 */
+            width: 300px;
+            height: 200px;
+            background-color: blue;
+        }
+        .child{
+            /* 자식이 부모 백그라운드 넘어가지 않도록 제어하기 */
+            background-color: yellow;
+            /* width: 200px; */
+
+            /* max-width 기본값 : none 부모 너비(높이)를 벗어나지 않음 */
+            /* max-width: 1500px; */
+
+            /* min-width 기본값 : 0  부모 너비(높이)를 벗어날 수 있다.*/
+            min-width: 400px;
+            height: 100px;
+        }
+    </style>
+</head>
+<!-- body 는 뷰포트 영역 -->
+<body>
+    <div>DIV</div> 
+    <span>SPAN</span>
+    <span>SPAN</span>
+    <hr>
+    <div class="parent">
+        <div class="child">
+
+        </div>
+    </div>
+</body>
+</html>

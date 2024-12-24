@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 300px;
+            background-color: rosybrown;
+            /* 부모역할위해 /absolute, fixed 는 위치상의
+             부모구조가 무너지는 경우가 있음*/
+            position: relative;
+            /* overflow: hidden; */
+            /* 부모는 자식위로 쌓을 수 없음 */
+        }
+        .container .item {
+            border: 4px dashed red;
+            width: 100px;
+            height: 100px;
+            
+
+        }
+        .container .item:nth-child(1){
+            background-color: orange;
+            position: relative;
+            /* z-index:0 */
+        }
+        .container .item:nth-child(2){
+            background-color: blueviolet;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index: 1;
+        }
+        .container .item:nth-child(3){
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background-color: yellowgreen;
+            z-index: 2;
+            /* z-index:0 */
+        }
+    </style>
+</head>
+<body>
+     <!-- 요소 쌓임 순서: Stack order 
+    1.요소에 position속성의 값이 있는 경우 위에 쌓임(static 제외)
+    2.1번 조건이 같은 경우, z-index속성의 숫자 값이 높을 수록 위에 쌓임
+    3.1번2번 조건까지 같은 경우, html의 다음 구조일 수록 위에 쌓임
+  -->
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+</body>
+</html>

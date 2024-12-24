@@ -1,0 +1,55 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script>
+            window.onload=function(){
+                console.log(document.querySelectorAll('input[type=button]'));
+                //체크박스 중에서 checked 된 태그 선택
+                console.log(document.querySelectorAll('[type=checkbox]:checked'));
+                //라디오 버튼 & 체크박스 중에서 checked 된 태그 선택
+                //console.log(document.querySelectorAll(':checked'));
+                const btns=document.querySelectorAll('input[type=button]');
+                // btns.forEach(btn=>{
+                //     btn.addEventListener('mouseenter',function(){
+                //         this.style.backgroundColor=this.value;
+                //     })
+                //     btn.addEventListener('mouseleave',function(){
+                //         this.style.backgroundColor='';
+                //     })
+                // })
+                btns[0].addEventListener('mouseenter',function(){
+                      this.style.backgroundColor=this.value;
+                 })
+                btns[0].addEventListener('mouseleave',function(){
+                    this.style.backgroundColor='';
+                })
+                btns[1].addEventListener('mouseenter',function(){
+                      this.style.backgroundColor=this.value;
+                 })
+                btns[1].addEventListener('mouseleave',function(){
+                    this.style.backgroundColor='';
+                })
+        }
+    </script>
+    <style>
+        /* #btn1:hover{
+            background-color: yellow;
+        }
+        #btn2:hover{
+            background-color: green;
+        } */
+    </style>
+</head>
+<body>
+    <input type="checkbox" value="dog" checked />개<br>
+  <input type="checkbox" value="cat" checked />고양이<br>
+  <input type="checkbox" value="duck" />오리<br>
+  <input type="radio" name="gender" value="male" checked> 남성
+  <input type="radio" name="gender" value="female"> 여성
+  <input id="btn1" type="button" value="yellow">
+  <input id="btn2" type="button" value="green">
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload=function(){
+          console.log(document.querySelector('#txt1'));
+        //   for(let i=0;i<4;i++){
+          //     document.querySelector('#txt1'+i).addEventListener('focus',function(){
+          //         this.style.backgroundColor ='yellow';
+          //     });
+          //     document.querySelector(`#txt1${i}`).addEventListener('blur',function(){
+          //         this.style.backgroundColor ='';
+          //     });
+          document.querySelector('#txt1'+i).onfocus = function(){
+            this.style.backgroundColro = 'yellow'
+          };
+          document.querySelector(`#txt1${i}`).onblur = function(){
+            this.style.backgroundColro = '';
+          }
+        }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="txt1" /><br />
+    <input type="text" id="txt2" /><br />
+    <input type="text" id="txt3" /><br />
+    <hr />
+    <input type="text" onfocus="fct1(this)" onblur="fct2(this)" />
+    <input type="text" onfocus="fct1(this)" onblur="fct2(this)" />
+    <input type="text" onfocus="fct1(this)" onblur="fct2(this)" />
+    <script>
+      function fct1(txtObj) {
+        console.log(txtObj);
+        txtObj.style.backgroundColro = 'yellow';
+      }
+      function fct2(txtObj) {
+        console.log(txtObj);
+        txtObj.style.backgroundColro = 'yellow';
+      }
+    </script>
+  </body>
+</html>

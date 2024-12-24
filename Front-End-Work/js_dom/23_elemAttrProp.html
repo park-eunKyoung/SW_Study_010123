@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="chk" type="checkbox" ><br>
+    <button id="ckbtn1">체크상태값 확인</button>
+    <button id="ckbtn2">체크상태값 설정</button><br><hr>
+    
+    <input id="txt" type="text" ><br><br>
+    <button id="txtbtn1">텍스트상태 확인</button>
+    <button id="txtbtn2">텍스트상태 설정</button>
+    <script>
+        //checked, readonly, disabled 속성의 상태값은 객체속성을 제어할것
+        let txt=document.getElementById('txt');
+        let chk=document.getElementById('chk');
+        let ckbtn1=document.getElementById('ckbtn1');
+        let ckbtn2=document.getElementById('ckbtn2');
+        let txtbtn1=document.getElementById('txtbtn1');
+        let txtbtn2=document.getElementById('txtbtn2');
+        txtbtn2.addEventListener('click',function(){
+            console.log(txt);
+            txt.readOnly=true;
+            txt.disabled=true;
+        });
+        txtbtn1.addEventListener('click',function(){
+            console.log(txt);
+            if(txt.readOnly==true) console.log('읽기모드 상태');
+            if(txt.disabled==true) txt.disabled=false;
+        });
+        ckbtn2.addEventListener('click',function(){
+            chk.checked=true;
+        })
+        ckbtn1.addEventListener('click',function(){
+            console.log(chk.checked);
+            
+            //console.log(chk.getAttribute('checked')); //실시간 체크 여부x
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <style>
+        table,tr,td{text-align:center;
+            border-collapse: collapse;}
+        td {padding: 10px;}
+
+    </style>
+</head>
+
+<body>
+    <script>
+        function check2()  {
+
+            //console.log('check2 call');
+            let id = document.querySelector('#userId').value;
+            let pw = document.querySelector('#userPw').value;
+            if(id=='' || pw==''){
+                alert('아이디 또는 비밀번호 입력 바람');
+               
+                return false;
+            }
+                return true;
+            }
+
+        //일반버튼 전송
+        function check()  {
+            //console.log('check2 call');
+            let idElem = document.querySelector('#userId');
+            let pwElem = document.querySelector('#userPw');
+            
+            if(idElem=='' ){
+                alert('아이디 입력 바람');
+                idElem.focus();
+                return false;
+            }
+            if(pwElem==''){
+                alert('비밀번호 입력 바람')
+               pwElem.focus();
+               return false;
+            }
+            return true;
+            // document.loginFrm.submit();
+        }
+    </script>
+<table border="1" >
+    <form name="loginFrm" action="./login" method="post" onsubmit="return check2();">
+        <table border="1" >
+    <tr>
+        <th>ID</th>
+        <td><input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요"></td>
+    </tr>
+    <tr colspan="2">
+        <th>PW</th>
+        <td><input type="text" name="userPw" id="userPw" placeholder="비번을 입력하세요"></td>
+    </tr>
+    <tr>
+        <td colspan="2"><input type="button" value="로그인" >
+            <input type="submit" value="회원가입"></td>
+    </tr>
+    <!-- <form name="loginFrm" action="./login" method="post" onsubmit="return check2();"> -->
+        <!-- <input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요">
+        <br>
+        <input type="text" name="userPw" id="userPw" placeholder="비번을 입력하세요">
+        <br>
+        <input type="button" value="일반버튼" onclick="check()">
+        <input type="submit" value="전송버튼"> -->
+
+    </table>
+    </form>
+
+
+</body>
+</html>

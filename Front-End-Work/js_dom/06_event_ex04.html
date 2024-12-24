@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //event 전역객체 사용 (비권장)
+        function fct(txtObj, evt){
+            console.log(evt);
+            console.log(evt.keyCode);
+            
+            
+            if(txtObj.value.length===6 || evt.keyCode===13){
+                document.querySelector('#txt2').focus();
+            }
+        }
+        window.onload=function(){
+           let txt3El= document.querySelector('#txt3');
+           txt3El.focus();
+           //event 객체 handler 안에 써줘야 알아서 해줌 
+           //event 객체는 전역객체보다는 매개병수 전달사용을 권장 
+           txt3El.addEventListener('keyup', function(evt){ 
+            console.log(evt);
+            console.log(evt.keyCode); //엔터 13
+            console.log(evt.target); //이벤트 발생한 요소
+            if(txt3El.value.length===6 || evt.keyCode===13){
+                document.querySelector('#txt4').focus();
+                evt.target.style.backgroundColor='yellow'
+            }
+           })
+        }
+    </script>
+</head>
+<body>
+    <h1>주민번호 입력하세요</h1>
+    <!-- 이벤트 전역객체는 최신 브라우저에서 지원 안할수있음 (비권장) -->
+  <input type="text" id="txt1" onkeyup="fct(this,event)">
+  -
+  <input type="text" id="txt2">
+  <hr>
+  <input type="text" id="txt3">
+  -
+  <input type="text" id="txt4">
+</body>
+</html>

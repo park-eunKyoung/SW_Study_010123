@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            /* 전환효과: 전상태와 후 상태의 중간단계를 자연스럽게 만드는 것 */
+            /* transition: 요소의 전환효과를 지정하는 단축 속성 */
+            /* transition: 속성명(all) 지속시간(0s,필수속성) 타이밍함수(ease) 대기시간(0s) */
+            /* transition: 1s; */
+            /* transition: width .5s , background-color 2s; */
+            /* transition: 1s 2s (대기시간);  */
+        }
+        
+        div:active{
+            width: 300px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

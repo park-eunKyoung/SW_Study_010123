@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="conf()">confirm</button>
+    <button onclick="promp()">prompt</button>
+    <script>
+      function conf() {
+        let con = confirm('정말로 삭제하시겠습니까?');
+        if (con == true) {
+          alert('db에서 삭제함');
+        } else {
+          alert('삭제취소함');
+        }
+      }
+      function promp() {
+        let age = prompt('당신 나이는?');
+        console.log(age, typeof age);
+        if (age === '') {
+          console.log('empty string');
+        }
+        if (age === null) {
+          console.log('null');
+        }
+        if (age === '  ') {
+          console.log('공백');
+        }
+      }
+    </script>
+  </body>
+</html>

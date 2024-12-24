@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=()=>{
+            //let h1Els = document.getElementsByTagName('h1');
+            let h1Els = document.querySelectorAll('h1'); //collection, list 는 유사배열
+            console.log(h1Els);
+            //let arr=Array.from(h1Els) -배열로 변환 1
+            let arr=[...h1Els]; //-배열로 변환 2
+                console.log(arr);
+            //let h2Els=document.getElementsByClassName('head2');
+            let h2Els=document.querySelectorAll('.head2');
+            console.log(h2Els);
+
+            //let h3El = document.getElementById('head3');
+            let h3El = document.querySelector('#head3');
+            console.log(h3El);
+            
+
+            
+        }
+    </script>
+</head>
+<body>
+    <h1>H1 Tag1</h1>
+        <h1>H1 Tag3</h1>
+        <h1>H1 Tag4</h1>
+        <h1>H1 Tag5</h1>
+		<h2 class="head2">head2 class</h2>
+        <h2 class="head2">head2 class</h2>
+        <h2 class="head2">head2 class</h2>
+        <h2 class="head2">head2 class</h2>
+		<h3 id="head3">head3 id</h3>
+</body>
+</html>

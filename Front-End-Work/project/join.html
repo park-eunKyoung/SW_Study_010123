@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+        <div>아이디 : <input type="text" id="username" onchange="idCheck()"></div><br>
+        <div><span id="span1"></span></div>
+        <div>비밀번호 : <input type="text" id="password1" onblur="pwCheck()"></div><br>
+        <div><span id="span2"></span></div>
+        <div>비밀번호확인 : <input type="text" id="password2" onchange="pw()"></div><br>
+        <div><span id="span3"></span></div>
+
+        <script>
+            function idCheck() {
+                if (/^(?=.*[a-z])(?=.*\d)[a-z\d]{6,10}$/.test(document.getElementById("username").value)) {
+                    document.getElementById("span1").style.color = "#00FF00";
+                    document.getElementById("span1").innerHTML = "사용가능한 아이디입니다.";
+                }
+                else {
+                    document.getElementById("span1").style.color = "#ff0000";
+                    document.getElementById("span1").innerHTML = "올바른 형식이 아닙니다.";
+                }
+            }
+
+            function pwCheck() {
+                if (/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!#$]{4,8}$/.test(document.getElementById("password1").value)) {
+                    document.getElementById("span2").style.color = "#00FF00";
+                    document.getElementById("span2").innerHTML = "사용가능한 비밀번호입니다.";
+                }
+                else {
+                    document.getElementById("span2").style.color = "#ff0000";
+                    document.getElementById("span2").innerHTML = "올바른 형식이 아닙니다.";
+                }
+            }
+
+            function pw() {
+                if (document.getElementById("password1").value === document.getElementById("password2").value) {
+                    document.getElementById("span3").style.color = "#00FF00";
+                    document.getElementById("span3").innerHTML = "비밀번호가 일치합니다.";
+                }
+                else {
+                    document.getElementById("span3").style.color = "#ff0000";
+                    document.getElementById("span3").innerHTML = "비밀번호가 일치하지 않습니다.";
+                }
+            }
+        </script>
+    </body>
+</html>

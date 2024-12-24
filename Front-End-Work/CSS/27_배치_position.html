@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 3000px;      
+        }        
+        div{
+            width: 200px;
+            height: 200px;
+            text-align: center;
+        }
+        div.static{
+            /* 기본값: static, 문서의 정상적인 흐름에 따라 배치됨 */
+            /* position: static; */
+            /* static에서 top,left 적용되지않음 */
+            /* 부모역할 못함 */
+            top: 100px;
+            left: 20px;
+            background-color: aqua;
+        }
+        div.relative{
+            /* 정상적인 위치에서 상대적으로 요소가 배치됨 */
+            /* 일반적으로 부모역할은 relative가하는것이 일반적임 */
+            position: relative;
+            background-color: yellow;
+            top: 100px;
+            left: 20px;
+        }
+        div.absolute{
+            /* absolute는 부모를 기준으로 배치 */
+            position:absolute;
+            border: 3px solid red;
+            top: 100px;
+            left: 20px;
+        }
+        div.fixed{
+            position:fixed;
+            background-color: coral;
+            top: 10%;
+            right: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div class="static">position:static</div>
+    <div class="relative">
+      position:relative
+      <div class="absolute">position:<br />absolute</div>
+    </div>
+    <div class="fixed">position:fixed</div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <h1>영화제목1</h1>
+    <img src="" alt="" width="200" />
+    <h1>영화제목2</h1>
+    <img src="" alt="" width="200" />
+
+    <script>
+      //비동기통신 : ajax
+      function fetchMovies() {
+        //jQuery 활용
+        const $h1Els = $('h1'); //jQuery 인걸 알려주기위한 ($) 안써도됨
+        const $imgEls = $('img');
+        $.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+          .done((resp) => {
+            console.log(resp);
+            //console.log(imgEl);
+            $h1El[0].textContent = resp.Search[0].Title;
+            $imgEl[0].src = resp.Search[0].Poster;
+          })
+          .fail((err) => console.log('err:', err));
+      }
+      //fetchMovies();
+
+      function fetchMovies1() {
+        $.ajax({
+          method: 'get', // 'post'(변경),'delete'(삭제)
+          url: 'https://www.omdbapi.com',
+          data: { apikey: '7035c60c', s: 'frozen' },
+          //responseType: 'json', //기본값(json)
+        })
+          .done((resp) => {
+            console.log(resp);
+            const $h1Els = $('h1');
+            const $imgEls = $('img');
+            //console.log(imgEl);
+            $h1Els[0].textContent = resp.Search[0].Title;
+            $imgEls[0].src = resp.Search[0].Poster;
+            //jobs 출력
+            $.ajax({
+              method: 'get', // 'post'(변경),'delete'(삭제)
+              url: 'https://www.omdbapi.com',
+              data: { apikey: '7035c60c', s: 'jobs' },
+              //responseType: 'json', //기본값(json)
+            })
+              .done((resp) => {
+                console.log(resp);
+                $h1Els[1].textContent = resp.Search[1].Title;
+                $imgEls[1].src = resp.Search[1].Poster;
+              })
+              .fail((err) => console.log('err:', err));
+          })
+          .fail((err) => console.log('err:', err));
+      }
+      // fetchMovies1()
+
+      async function fetchMovies4() {
+        const h1Els = $('h1');
+        const imgEls = $('img');
+        try {
+          await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen').done(
+            (resp) => {
+              console.log('1번resp', resp);
+              h1Els[0].textContent = resp.Search[0].Title;
+              imgEls[0].src = resp.Search[0].Poster;
+            }
+          );
+          //jobs
+          await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs').done(
+            (resp) => {
+              console.log('2번resp', resp);
+              h1Els[1].textContent = resp.Search[1].Title;
+              imgEls[1].src = resp.Search[1].Poster;
+            }
+          );
+        } catch (err) {
+          //1번또는 2번 비동기 에러처리
+          console.log('catch', err);
+          console.log('error next작업');
+        } finally {
+          console.log('무조건 실행하는영역');
+        }
+      }
+      fetchMovies4();
+    </script>
+  </body>
+</html>

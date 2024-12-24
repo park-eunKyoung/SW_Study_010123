@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* px, %, em(요소글꼴의 크기), rem(html요소 글꼴의 크기),
+         vW, vh 
+        뷰포트 너비의 1%를 의미합니다.
+        1vw는 현재 브라우저 창의 전체 너비의 1% 입니다.
+        예를 들어, 화면 너비가 1000px 인 경우 : 
+        1vww = 10px
+        50vw = 500px (전체 화면의 절반)
+
+        0px==0%==0em==0rem==0 따라서 0일땐 단위를 붙이지 않는다.
+        */
+        html {
+            /* font-size: 16px; 브라우저(크롬) 기본값으로 후손한테 상속 */
+        }
+        .parent {
+            width: 300px;
+            height: 200px;
+            background-color: skyblue;
+            font-size: 10px;
+        }
+        .child{
+            /* 20em : 20*10 , 20rem : 20*16 폰트 크기 맞춰서 너비 조정*/
+            width: 20rem;
+            /* width: 200px; */
+            height: 50%;
+            background-color: yellowgreen;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        parent
+        <div class="child">
+            child
+        </div>
+    </div>
+</body>
+</html>

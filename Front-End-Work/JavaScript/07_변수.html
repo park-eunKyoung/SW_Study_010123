@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //var : ES5 문법 함수레벨 scope , 의도하지 않은 범위에서 사용될 수 
+        //let, const : 블록렙벨 scope ES6 문법, JAVA 와 동일
+        function scope(){
+            //var a;
+            //console.log(a); //var : undifined , let : err
+            if(true){
+                //var a=123;
+                let a=123;
+                console.log(a);
+            }
+            
+            
+        }
+        scope();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

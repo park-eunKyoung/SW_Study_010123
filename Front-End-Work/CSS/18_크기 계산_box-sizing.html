@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+        .item:first-child{
+          /* width: 52px; 계산하기 귀찮음*/
+      border: 4px solid red;
+      padding: 20px;
+      /*border-box: 요소의 내용+padding+border로 크기(width:100px)를 계산
+       기본값: content-box: 요소의 내용만으로 크기(width:100px)를 계산  */
+      box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+</body>
+</html>

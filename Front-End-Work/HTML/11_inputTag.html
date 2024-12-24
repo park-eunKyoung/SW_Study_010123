@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //자바스크립트
+      //alert("hello javaScript");
+      function check() {
+        //함수
+        //alert('함수 check call');
+        //check 라는 함수를 때렸을 때 반응함
+        //id, pw 값을 출력
+        //alert(document.getElementById('userId'));
+        //alert(document.getElementById('userId').value);
+        //alert(document.getElementById('userPw').value);
+        let id = document.getElementById("userId").value
+        let pw = document.getElementById("userPw").value
+
+        //<쌤이 풀어준 답안>
+        // if(id=='aaa' && pw=='1234'){
+        //   console.log('로그인 성공')
+        // }else if (id==''|| pw==''){
+        //   console.log('아이디 또는 비밀번호 입력 바람')
+        // }else{
+        //   console.log('로그인실패')
+        // }
+
+        if (id == "" || pw == "") {
+          console.log("아이디 또는 비밀번호 입력 바람")
+        } else if (
+          (id.length < 4 || id.length > 6) &&
+          (pw.length < 4 || pw.length > 6)
+        ) {
+          console.log("아이디와 비밀번호 길이는 4~6입니다.")
+        } else {
+          console.log("서버로 전송")
+          let frmEle = document.getElementById("loginFrm")
+          frmEle.submit()
+        }
+
+        //alert (id+","+pw);
+
+        // console.log(id+","+pw);
+        // console.log(id,pw);
+        // console.log(id+pw);
+        // console.log(id.length, pw.length);
+        //if문은 자바와 동일
+        //아이디또느 비번이 각각 4~6자 사이면 'ok' 출력 아니면 에러 , 입력값이 없어도 에러
+        // if ((4 > id.length || id.length > 6) || (4 > pw.length || pw.length > 6))  {
+        //   console.log("error")
+        // } else {
+        //   console.log("ok")
+        // }
+        // if (4 > pw.length || pw.length > 6) {
+        //   console.log("error")
+        // } else {
+        //   console.log("ok")
+        // }
+      }
+    </script>
+  </head>
+  <body>
+    <fieldset>
+      <legend>text & password & hidden & button</legend>
+      <form id="loginFrm" name="frm" action="./login">
+        <input
+          id="userId"
+          placeholder="아이디 입력"
+          type="text"
+          name="id"
+          value="admin"
+          required
+        /><br />
+        <input
+          id="userPw"
+          placeholder="비밀번호 입력"
+          type="password"
+          name="pw"
+          required
+        /><br />
+        <input type="hidden" name="no" value="12345678" />
+        <input type="submit" value="서버전송" />
+        <button>서버 전송 2</button>
+        <input type="button" value="일반버튼" onclick="check()" />
+      </form>
+    </fieldset>
+    <fieldset>
+      <legend>checkbox & radio & label</legend>
+      <form action="./join">
+        <input id="apple" type="checkbox" name="fruit1" value="apple" checked />
+        <label for="apple">사과</label>
+        <input id="pear" type="checkbox" name="fruit2" value="pear" />
+        <label for="pear">배</label>
+        <input id="cherry" type="checkbox" name="fruit3" value="cherry" />
+        <label for="cherry">체리</label>
+        <br />
+        <!-- fruit=['apple','pear','cherry'] 배열로 전달됨  -->
+        <input type="radio" name="gender" value="male" />남자
+        <input type="radio" name="gender" value="female" checked />여자
+        <button>서버전송</button>
+      </form>
+    </fieldset>
+    <fieldset>
+      <legend>file</legend>
+      첨부파일 : <input type="file" />
+    </fieldset>
+    <fieldset>
+      <legend>e-mail & url & time & date</legend>
+      <form action="./join">
+        email : <input type="email" name="email" required /><br />
+        url : <input type="url" name="url" /><br />
+        time : <input type="time" name="time" /><br />
+        date : <input type="date" name="date" /><br />
+        local time : <input type="datetime-local" name="local" />
+        <input type="submit" value="가입" /><br />
+      </form>
+    </fieldset>
+    <fieldset>
+      <legend>select</legend>
+      <select name="cars">
+        <option value=" ">선택</option>
+        <option value="Volvo">볼보</option>
+        <option value="Kia" selected>기아</option>
+        <option value="Bentz">벤츠</option>
+        <option value="Audi">아우디</option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend>number & range</legend>
+      <form action="url">
+        NUMBER(1~10) :
+        <input
+          type="number"
+          name="qty"
+          id="number"
+          value="5"
+          min="1"
+          max="10"
+        />
+        <br>
+        RANGE(0~10) : <input type="range" name="point" id="range" min="0" max="10" value="0" step="2">
+        <button>제출</button>
+        <input type="button" value="일반버튼" onclick="check2()">
+        <br/>
+      </form>
+    </fieldset>
+    <script>
+      function check2() {
+      // 선택한 number 값과 range 값을 console 창에 출력
+      let num = document.getElementById("number").value
+      let ran = document.getElementById("range").value
+
+      console.log("number : " ,num)
+      console.log("range : " ,ran)
+
+      //number 값이 짝수,홀수 판별 출력
+      if(num%2==0){
+        console.log("짝수")
+      }else {
+        console.log("홀수")
+      }
+      }
+    </script>
+  </body>
+</html>

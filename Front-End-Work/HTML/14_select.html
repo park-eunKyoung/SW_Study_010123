@@ -1,0 +1,32 @@
+﻿<html>
+<body>
+
+<form action="action_page.php">
+  <select name="cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi" selected>Audi</option>
+  </select>
+  <input type="submit">
+</form>
+
+<form action="action_page.php">
+  <input list="browsers" name="browser">
+  <datalist id="browsers">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+  <input type="submit">
+</form>
+<p><b>Note:</b> 데이터 리스트는 선택 뿐 아니라 입력도 가능</p>
+<p><b>Note:</b> 사파리와 IE9 미만에서는 작동하지 않음</p>
+
+
+
+
+</body>
+</html>

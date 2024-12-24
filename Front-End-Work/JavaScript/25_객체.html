@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="width: 300px; height: 100px; background-color: yellow"></div>
+
+    <script>
+      console.log(user);
+      const a = { k: 100 };
+      const b = { k: 100 };
+      console.log(a === b);
+      //console.log(a.k === b.k);
+      //{속성명 (property, key)}
+      const user = { name: 'Hong', age: 30, email: 'thehong@gmail.com' };
+      //user.gender='남자';
+      let pro = 'gender';
+      //user.pro (x) 실제 변수명이 pro 여야함
+      user[pro] = '남자';
+      pro = 'addr';
+      user[pro] = '인천';
+      console.log(user);
+      //for ~in 은 객체 반복시
+      for (const property in user) {
+        // console.log(property,user[property])
+        //    if(property==='addr'){
+        //      user[property]='서울'
+        //    }};
+      }
+      //user.addr='송도'
+      //keys : 객체 속성들만 배열로 반환
+      const keys = Object.keys(user);
+      console.log(keys);
+      console.log(user.email);
+      console.log(user['email']);
+      console.log(user[keys[2]]);
+      keys.sort();
+      console.log(keys);
+      //keys를 이용해서 값을 배열에 저장
+      const values = keys.map((key) => {
+        return user[key];
+      });
+      console.log(values);
+      //keys 메소드 구현
+      const keyNames = [];
+      //객체 속성을 전달할때
+      for (const key in user) {
+        keyNames.push(key);
+      }
+      console.log(keyNames);
+      keyNames.sort();
+      console.log(keyNames);
+
+      //map 메소드 구현
+      const valueArr = [];
+      //권장 : 요소가 적을때
+      keyNames.forEach((key) => valueArr.push(user[user]));
+      //권장 : 요소의 갯수가 많을때
+      //   for(const key of keyNames){
+      //     valueArr.push(user[key])
+      //   }
+      console.log(valueArr);
+
+      const memberList = [
+        { name: 'kim', age: 20, addr: '인천' },
+        { name: 'lee', age: 22, addr: '서울' },
+        { name: 'park', age: 40, addr: '인천' },
+      ];
+      let newObj = { name: 'cha' };
+      newObj.age = 40;
+      newObj.addr = '안산';
+      memberList.push(newObj);
+      console.log(memberList);
+      console.log('memberList 출력...');
+      memberList.forEach((member) => {
+        //member객체 반복문 분해
+        for (const key in member) {
+          console.log(key + ':' + member[key]);
+        }
+      });
+
+      //객체 : {속성멸: 값(정수,실수,문자열,배열,객체,불린값...)}
+      const data = {
+        members: [
+          { name: 'kim', age: 20, addr: '인천' },
+          { name: 'lee', age: 22, addr: '서울' },
+          { name: 'park', age: 40, addr: '인천' },
+        ],
+        msg: '정회원 리스트',
+      };
+      console.log('서버에서 받은값 ', data);
+
+      const members = data.members;
+      //방법1
+      //   members.forEach(member=>{
+      //     for(const key in member){
+      //         console.log(key+':'+member[key]);
+      //     }
+      //   })
+      //방법 2
+      // const divEl = document.querySelector('div');
+      // for (const member of members) {
+      //   let str = '';
+      //   for (const key in member) {
+      //     str += `${key}  : ${member[key]}`;
+      //   }
+        // let textNode = document.createTextNode(str);
+        // divEl.appendChild(textNode);
+        // divEl.appendChild(document.createElement('<br>'));
+        //divEl.innerHTML=str+'<br>';
+        //console.log('한명씩 출력',str);
+      //}
+      const msg = data.msg;
+      //-----------------------------------------
+      //Object mdn 검색: Object.assign() : 클래스명.정적(static) 메소드
+      //.assign()가 prototype에 속해있지 않아서 객체.assing()코딩시 에러이다
+
+      const userAge = {
+        name: 'kim',
+        age: 40,
+      };
+      const userEmail = {
+        name: 'lee',
+        email: 'thelee@gmail.com',
+      };
+      //   userAge.email=userEmail.email;
+      // const target = Object.assign(userAge,userEmail); //원본손상됨
+      // console.log(target); //userAge 와 동일
+      // console.log(userAge);
+      // console.log(target===userAge);
+
+      //userAge 와 userEmail 합하여 새로운 객체 생성하기
+      //.assign(타겟(대상)객체, 소스객체1[,소스객체2...]):
+      // 소스객체1개이상을 데이터를 타겟객체로 복사하고 타겟객체를 반환한다.
+      const target = Object.assign({}, userAge, userEmail);
+      console.log(target);
+      console.log(userAge);
+      console.log(userEmail);
+      console.log(target === userAge);
+
+    </script>
+  </body>
+</html>
