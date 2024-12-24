@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${#temporals.format(currentDate,'dd/MMM/YYYY HH:mm:ss')}"></h3>
+<h3>aaa[[${currentDate}]]</h3>
+<h3 th:text="${currentDate}">현재날짜</h3>
+<hr>
+<a th:href="@{/t_output}">thymeleaf 출력</a> <br/>
+
+</body>
+</html>

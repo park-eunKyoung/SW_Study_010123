@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<a href="https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#appendix-b-expression-utility-objects">타임리프 Utility Object</a>
+<h1>t_control.html</h1>
+<h2>th:if</h2>
+<div th:if="${session.user_id != null}"}>
+    <p>로그인 아이디 : <span th:text="${session.user_id}"></span></p>
+</div>
+<div th:if="${session.user_id == null}"}>
+    <p>로그인 되지 않았습니다. : <a href="/login">로그인</a></p>
+</div>
+
+<hr>
+
+<a th:href="@{'/info/'+${session.user_id}}">/info/admin 정보청</a>
+<a th:href="@{|/info/${session.user_id}|}">/info/admin 정보청</a>
+<a th:href="@{/info/{id}(id=${session.user_id})}">/info/admin 정보청</a>
+
+<th:block th:if="${msg} != null">
+    <p>메세지 : [[${msg}]]</p>
+</th:block>
+<th:block th:unless="${msg} != null">
+    <p>메세지가 없습니다.</p>
+</th:block>
+
+<h2>th:switch-case</h2>
+<th:block th:switch="${age/10}">
+    <p th:case="1">10대 입니다.</p>
+    <p th:case="2">20대 입니다.</p>
+    <p th:case="3">30대 입니다.</p>
+    <p th:case="4">40대 입니다.</p>
+    <p th:case="5">50대 입니다.</p>
+</th:block>
+
+<hr>
+
+<h2>th:each</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th width="50">index</th>
+        <th width="50">count</th>
+        <th width="100">이름</th>
+        <th width="50">나이</th>
+        <th width="200">주소</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <th:block th:if="${#lists.isEmpty(dataDtoList)}">
+        <tr>
+            <th colspan="3">출력할 데이터가 없습니다.</th>
+        </tr>
+    </th:block>
+
+    <th:block th:unless="${#lists.isEmpty(dataDtoList)}">
+        <th:block th:each="item, status:${dataDtoList}">
+            <tr>
+                <td th:text="|${status.index + 1}번째|"></td>
+                <td th:text="${status.count}"></td>
+                <td th:text="${item.getName()}"></td>
+                <td th:text="${item.age}"></td>
+                <td th:text="${item.address}"></td>
+            </tr>
+        </th:block>
+    </th:block>
+    </tbody>
+</table>
+
+<hr>
+
+<a href="/senddata" th:href="@{/senddata}">데이터 전송</a>
+</body>
+</html>

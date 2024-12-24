@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <div th:replace="~{fragments::header1('admin')}"></div>
+    <div th:insert="~{fragments::header1('')}"></div>
+</header>
+<h1>template/index.html</h1>
+<a href="intro.html" th:href="@{/intro}">intro</a>
+
+    <th:block th:replace="~{fragments::footer1('icia 인천일보')}"></th:block>
+</body>
+</html>
