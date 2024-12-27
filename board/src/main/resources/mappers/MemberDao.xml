@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
+<!-- 0. id -> 메소드 이름 ,
+ 1. parameterType 은 생략 가능
+ 2. resultType = "boolean" 생략 가능
+ 3. #{변수명} , #{필드명} , #{속성명}
+ -->
 <mapper namespace="com.icia.board.dao.MemberDao">
-<!--sql 문-->
+    <insert id="join" parameterType="MemberDto">
+        insert into member(m_id,m_pw,m_name,m_birth,m_addr,m_point) values
+                            (#{m_id},#{m_pw},#{m_name},#{m_birth},#{m_addr},default)
+    </insert>
+    <!--sql 문-->
     <select id="login" parameterType="MemberDto" resultType="boolean">
         select count(*) from member where m_id=#{m_id} and m_pw=#{m_pw}
+    </select>
+    <!--parameterType -> 기본값(생략가능) -->
+    <select id="isUsedId" resultType="boolean" >
+        select count(*) from member where m_id=#{id}
     </select>
 </mapper>

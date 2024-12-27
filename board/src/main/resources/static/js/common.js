@@ -6,8 +6,18 @@ function goHome(){
     location.href="/";  //localhost:80/
 }
 function msgPrint(){
-    if(m!=''){
+    if(m!=null){
         alert(m)
     }
 }
 //loginStatus()
+function loginStatus(){
+    if(id){
+        $('#m_id').html(id+"님");
+        $('.suc').css('display','block');
+        $('.bef').css('display','none');
+    }else{
+        $('.suc').css('display','none');
+        $('.bef').css('display','block');
+    }
+}
