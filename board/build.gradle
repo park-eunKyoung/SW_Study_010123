@@ -37,7 +37,8 @@ dependencies {
     // log4j --> logback --> log4j2  : log 찍는 라이브러리
     // log4jdbc-log4j2-jdbc4.1 : logback 활용한 로그 출력
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
-
+    //spring-security-core : password 암호화 (전체적인 보안관리)
+    implementation 'org.springframework.security:spring-security-core'
 
 }
 

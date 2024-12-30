@@ -13,12 +13,12 @@
             integrity="sha512-rV4fiystTwIvs71MLqeLbKbzosmgDS7VU5Xqk1IwFitAM+Aa9x/8Xil4CW+9DjOvVle2iqg4Ncagsbgu2MWxKQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="/js/common.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script defer th:src="@{/js/common.js}"></script>
     <script th:inline="javascript">
         const m = [[${msg}]]
-        const id = [[${session.id}]] //id 속성이 없으면 null
-        console.log("id : "+id);
+        const mb = [[${session.member}]] //member 속성이 없으면 null
+        console.log("mb : "+mb);
         $(() => {
             msgPrint()
             loginStatus()

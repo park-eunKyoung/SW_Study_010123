@@ -31,17 +31,24 @@ public class MemberController {
         //DB에서 select
         //MemberDto memberDto = new MemberDto();
         //memberDto.setM_id(m_id).setM_pw(m_pw);
-        //MemberDto memberDto = MemberDto.builder().m_id(m_id).m_pw(m_pw).build();
-        boolean result = mSer.login(memberDto);
-        if (result){
+
+        //boolean result = mSer.login(memberDto);
+        MemberDto member = mSer.login(memberDto);
+        if (member != null) {
             session.setAttribute("id",memberDto.getM_id());
+            //session.setAttribute("member",member);
             //return "board/list";
             return "redirect:/";
+        }else{
+            return "index";
         }
-        return "index";
     }
     @GetMapping("/join")
-    public String join() {
+    public String join(HttpSession session) {
+        //인가여부를 너무 많이 확인해야 함. ---> 인터셉터 or 시큐리티 활용
+        if (session.getAttribute("member") != null) {
+            return "redirect:/";
+        }
         return "member/join";
     }
     @PostMapping("/join")
