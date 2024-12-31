@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!-- 0. id -> 메소드 이름 ,
- 1. parameterType 은 생략 가능
- 2. resultType = "boolean" 생략 가능
- 3. #{변수명} , #{필드명} , #{속성명}
- -->
+<!--
+1. parameterType 생략 가능
+2. resultType="Boolean" 생략 가능
+3. #{변수명}, #{필드명}, #{속성명}
+4. 여러 레코드를 반환시 List 타입이 아닌 객체 타입 명시
+-->
 <mapper namespace="com.icia.board.dao.MemberDao">
     <insert id="join" parameterType="MemberDto">
-        insert into member values(#{m_id},#{m_pw},#{m_name},#{m_birth},#{m_addr},default)
+        insert into member(m_id,m_pw,m_name,m_birth,m_addr,m_point)
+        values(#{m_id},#{m_pw},#{m_name},#{m_birth},#{m_addr},default)
     </insert>
-    <!--sql 문-->
     <select id="login" parameterType="MemberDto" resultType="boolean">
         select count(*) from member where m_id=#{m_id} and m_pw=#{m_pw}
     </select>
-    <!--parameterType -> 기본값(생략가능) -->
-    <select id="isUsedId" resultType="boolean" >
+    <select id="isUsedId" parameterType="String" resultType="Boolean">
         select count(*) from member where m_id=#{id}
     </select>
-
-    <select id="getSecurityPw" resultType="java.lang.String">
+    <select id="getSecurityPw"  resultType="java.lang.String">
         select m_pw from member where m_id=#{mId}
     </select>
-
-    <select id="getMemberInfo" resultType="com.icia.board.dto.MemberDto">
-        select m_id, m_name, m_point from member where m_id=#{mId}
+    <select id="getMemerInfo" resultType="com.icia.board.dto.MemberDto">
+        select m.m_id, m.m_name, m.m_point, g.g_name
+        from member m join grade g
+        on m.m_point between g.g_lowpoint and g.g_highpoint
+        where m.m_id=#{mId}
     </select>
-
 
 </mapper>

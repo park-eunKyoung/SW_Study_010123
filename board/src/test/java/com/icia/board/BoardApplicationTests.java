@@ -9,9 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 //DB설정 없이 실행
 //@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 //@SpringBootTest
-@SpringBootApplication
-public class BoardApplicationTests {
+@SpringBootTest
+class BoardApplicationTests {
 
-    public static void main(String[] args) {SpringApplication.run(BoardApplicationTests.class, args);}
-
+    @Test
+    void contextLoads() {
+    }
 }
