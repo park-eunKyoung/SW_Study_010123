@@ -4,6 +4,7 @@ import com.icia.board.common.Paging;
 import com.icia.board.dao.BoardDao;
 import com.icia.board.dto.BoardDto;
 import com.icia.board.dto.SearchDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class BoardService {
     public static final Integer LISTCOUNT = 10;
+    public static final Integer PAGCOUNT = 2;
+
+
     @Autowired //필드 주입
     private BoardDao boardDao;
     public List<BoardDto> getBoardList(Integer pageNum) {
@@ -31,9 +36,23 @@ public class BoardService {
 
     }
 
-    public String getPaging(Integer pageNum) {
-        int totalNum = boardDao.getBoardCount();
-        Paging paging = new Paging(totalNum, pageNum, 10, 2, "/board?");
+    public String getPaging(SearchDto searchDto) {
+        int totalNum = boardDao.getBoardCount(searchDto);
+        log.info("totalNum:{}", totalNum);
+        String listUrl = null;
+        if(searchDto.getColname() !=null){
+            listUrl="/board?colname="+searchDto.getColname()+"&keyword="+searchDto.getKeyword()+"&";
+        }else{
+            listUrl="/board?";
+        }
+        Paging paging = new Paging(totalNum, searchDto.getPageNum(),searchDto.getListCount(),PAGCOUNT, "/board?");
         return paging.makeHtmlPaging();  //return "<a href=''>1</a>.....
+    }
+
+    public List<BoardDto> getBoardListSearch(SearchDto searchDto) {
+        Integer pageNum = searchDto.getPageNum();
+        //searchDto.setStartIndex((pageNum-1) * LISTCOUNT);
+        searchDto.setStartIndex((pageNum-1) * searchDto.getListCount());
+        return boardDao.getBoardListSearch(searchDto);
     }
 }

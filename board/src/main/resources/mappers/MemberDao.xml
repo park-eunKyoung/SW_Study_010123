@@ -28,5 +28,4 @@
         on m.m_point between g.g_lowpoint and g.g_highpoint
         where m.m_id=#{mId}
     </select>
-
 </mapper>

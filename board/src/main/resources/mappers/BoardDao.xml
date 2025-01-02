@@ -8,9 +8,20 @@
     <select id="getBoardList" resultType="com.icia.board.dto.BoardDto">
         select b_num,b_title,b_writer,b_date,b_view from board order by b_num desc limit #{startIndex}, #{listCount}
     </select>
+
     <select id="getBoardListSearch" resultType="com.icia.board.dto.BoardDto">
+        <!-- colname 이 널이 아니면 true or -->
         select b_num, b_title, b_writer, b_date, b_view from board
+        <if test='colname!=null and colname!=""'>
         where ${colname} like concat('%',#{keyword},'%')
+        </if>
         order by b_num desc limit #{startIndex}, #{listCount}
+    </select>
+
+    <select id="getBoardCount" resultType="java.lang.Integer">
+        select count(*) from board
+        <if test="colname != null and colname !=''">
+        where ${colname} like concat('%',#{keyword},'%')
+        </if>
     </select>
 </mapper>

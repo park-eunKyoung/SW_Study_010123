@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,21 +34,31 @@ public class BoardController {
             }
 
             List<BoardDto> boardList = null;
+            //장작 쿼리 작성시
+//            if(searchDto.getColname( ) == null || searchDto.getKeyword() == null){
+//                boardList = boardService.getBoardList(searchDto.getPageNum()); //페이지 번호 클릭
+//            }else{
+//                boardList = boardService.getBoardList(searchDto);
+//            }
+            //동적 쿼리작성시
+            boardList = boardService.getBoardListSearch(searchDto);
+            if(boardList == null){
 
-            if(searchDto.getColname( ) == null || searchDto.getKeyword() == null){
-                boardList = boardService.getBoardList(searchDto.getPageNum()); //페이지 번호 클릭
-            }else{
-                boardList = boardService.getBoardList(searchDto);
             }
 
             if(boardList != null) {
                 //페이지 정보
-                String pageHtml = boardService.getPaging(searchDto.getPageNum());
+                String pageHtml = boardService.getPaging(searchDto);
                 model.addAttribute("paging", pageHtml);
                 model.addAttribute("boardList", boardList); //js(json) , each문
                 return "board/list";
         }
         return "redirect:/";
+    }
+    @GetMapping("/detail/{bnum}")
+    public String detail(@RequestParam("bnum") Integer b_num, Model model) {
+        log.info("========detail bnum={}", b_num);
+        return null;
     }
     @GetMapping("/write")
     public String write() {
