@@ -40,7 +40,7 @@
                                 <option value="b_contents">내용</option>
                             </select>
                             <input type="text" id="keyword">
-                            <button id="search">검색</button>
+                            <button id="search" >검색</button>
                         </div>
                         <div class="data-area">
                             <div class="title-row">
@@ -81,5 +81,20 @@
         </div>
          <th:block th:replace="~{fragments::footer}"></th:block>
 </div>
+<script th:inline="javascript">
+    //검색기능 체크
+    $('#search').click(function (){
+        let keyword=$('#keyword').val();
+        if(keyword==''){
+            alert('검색어를 입력해주세요.');
+            return;
+        }
+        let select = $('#sel').val();
+        if(select=='') return;
+        console.log(keyword,select);
+        location.href="/board?colname="+select+"&keyword="+keyword+"&pageNum=1"
+        //"localhost/board?colname=b_title&keyword=제목&pageNum=1"
+    })
+</script>
 </body>
 </html>

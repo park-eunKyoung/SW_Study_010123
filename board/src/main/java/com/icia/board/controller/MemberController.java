@@ -17,7 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/member")
 public class MemberController {
      //@Autowired
-    private final MemberService mSer;
+    private final MemberService memberService;
+
     @GetMapping("/login")
     public String login(HttpSession session) {
         //로그인 상태라면 index.html 리다이렉트
@@ -34,26 +35,29 @@ public class MemberController {
 //        memberDto.setM_id(m_id).setm_pw(m_pw);
 
         //boolean result=mSer.login(memberDto);
-        MemberDto member=mSer.login(memberDto);
+        MemberDto member = memberService.login(memberDto);
         log.info("=====member: {}", member);
-        if(member!=null){
+        if (member != null) {
             //session.setAttribute("id", memberDto.getM_id());
             session.setAttribute("member", member);  //id,name,point
             Object url = session.getAttribute("urlPrior_login");
-            if(url!=null){
+            if (url != null) {
                 session.removeAttribute("urlPrior_login");
                 //System.out.println("url:"+url.toString());
-                return "redirect:"+url.toString();
+                return "redirect:" + url.toString();
+            } else {
+                return "redirect:/board";
             }
-            return "redirect:/board";
+//            return "redirect:/board";
             //return "redirect:/member/login";
-        }//end login ok
+        } else {//end login ok
 
-        //request객체에 파라미터 저장
-        //rttr.addAttribute("msg", "로그인 실패");
-        //session영역저장-->request영역(model속성객체)저장-->1번 사용후 자동삭제
-        rttr.addFlashAttribute("msg", "로그인 실패");
-        return "redirect:/";
+            //request객체에 파라미터 저장
+            //rttr.addAttribute("msg", "로그인 실패");
+            //session영역저장-->request영역(model속성객체)저장-->1번 사용후 자동삭제
+            rttr.addFlashAttribute("msg", "로그인 실패");
+            return "redirect:/";
+        }
     }
     @GetMapping("/join")
     public String join(HttpSession session) {
@@ -67,7 +71,7 @@ public class MemberController {
     @PostMapping("/join")
     public String join(MemberDto memberDto, Model model, HttpSession session , RedirectAttributes rttr) {
         log.info("=========memberDto:{}", memberDto);
-        boolean result=mSer.join(memberDto);
+        boolean result=memberService.join(memberDto);
         if(result){
            //model.addAttribute("msg", "가입성공");
             //session.setAttribute("msg","ss 가입성공");

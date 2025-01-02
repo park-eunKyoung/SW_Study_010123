@@ -4,8 +4,9 @@
 <!--
 1. parameterType 생략 가능
 2. resultType="Boolean" 생략 가능
-3. #{변수명}, #{필드명}, #{속성명}
+3. #{변수명}, #{필드명}, #{속성명} : 문자열인 경우 'aaa' or 숫자인 경우 100
 4. 여러 레코드를 반환시 List 타입이 아닌 객체 타입 명시
+5. ${변수명}, ${필드명}, ${속성명} : 문자열인 경우 ''를 붙이지않는다.
 -->
 <mapper namespace="com.icia.board.dao.MemberDao">
     <insert id="join" parameterType="MemberDto">

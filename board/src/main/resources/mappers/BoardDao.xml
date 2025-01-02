@@ -6,6 +6,11 @@
         insert into board values(null, #{b_title}, #{b_contents}, #{b_writer},default,default)
     </insert>
     <select id="getBoardList" resultType="com.icia.board.dto.BoardDto">
-        select b_num,b_title,b_writer,b_date,b_view from board order by b_num desc limit #{startIndex}, #{pageSize}
+        select b_num,b_title,b_writer,b_date,b_view from board order by b_num desc limit #{startIndex}, #{listCount}
+    </select>
+    <select id="getBoardListSearch" resultType="com.icia.board.dto.BoardDto">
+        select b_num, b_title, b_writer, b_date, b_view from board
+        where ${colname} like concat('%',#{keyword},'%')
+        order by b_num desc limit #{startIndex}, #{listCount}
     </select>
 </mapper>
