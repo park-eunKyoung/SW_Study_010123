@@ -6,9 +6,10 @@
 </head>
 <body>
     <h1>login.html</h1>
-    <form th:action="@{/member/login}">
-    아이디 : <input type="text" id="id_input" placeholder="아이디 입력"><br>
-    비밀번호 : <input type="password" id="password_input" placeholder="비밀번호 입력"><br>
+    <form th:action="@{/member/login}" method="post" >
+        <h2>로그인</h2>
+    <input type="text" id="id_input" placeholder="아이디 입력"><br>
+    <input type="password" id="password_input" placeholder="비밀번호 입력"><br>
     <button>로그인</button>
     </form>
 </body>

@@ -4,7 +4,6 @@ import com.icia.board.dao.MemberDao;
 import com.icia.board.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ public class MemberService {
             log.info("====아이디 존재함");
             if(pwEncoder.matches(memberDto.getM_pw(),encoPw)){
                 log.info("====로그인 성공");
-                return mDao.getMemerInfo(memberDto.getM_id());
+                return mDao.getMemberInfo(memberDto.getM_id());
             }else{
                 log.info("====비번 오류");
                 //return null;

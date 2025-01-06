@@ -3,6 +3,7 @@ package com.icia.board.service;
 import com.icia.board.common.Paging;
 import com.icia.board.dao.BoardDao;
 import com.icia.board.dto.BoardDto;
+import com.icia.board.dto.ReplyDto;
 import com.icia.board.dto.SearchDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,24 @@ public class BoardService {
         //searchDto.setStartIndex((pageNum-1) * LISTCOUNT);
         searchDto.setStartIndex((pageNum-1) * searchDto.getListCount());
         return boardDao.getBoardListSearch(searchDto);
+    }
+
+    public BoardDto getBoardDetail(Integer b_num) {
+        return boardDao.getBoardDtail(b_num);
+    }
+
+    public boolean boardDelete(Integer b_num) {
+        return boardDao.boardDelete(b_num);
+    }
+    public List<ReplyDto> getReplyList(Integer b_num) {
+        return boardDao.getReplyList(b_num);
+    }
+
+    public List<ReplyDto> insertReply(ReplyDto replyDto) {
+        List<ReplyDto> rList = null;
+        if(boardDao.insertReply(replyDto)){
+            rList = boardDao.getReplyList(replyDto.getR_bnum());
+        }
+        return rList;
     }
 }

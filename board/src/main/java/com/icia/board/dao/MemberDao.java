@@ -13,7 +13,9 @@ public interface MemberDao {
     //@Select("select count(*) from member where m_id=#{id}")
     boolean isUsedId(String id);
    
-    MemberDto getMemerInfo(String mId);
+    MemberDto getMemberInfo(String mId);
 
     String getSecurityPw(String mId);
+
+
 }

@@ -27,6 +27,8 @@ public class HomeController {
         if (session.getAttribute("urlPrior_login") != null) {
             session.removeAttribute("urlPrior_login");
         }
+        session.removeAttribute("searchDto");
+        session.removeAttribute("pageNum");
         return "index";  //index.html
     }
 }

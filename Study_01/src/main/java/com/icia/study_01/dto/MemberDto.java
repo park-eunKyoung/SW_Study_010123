@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class MemberDto {
-        private String m_id;
-        private String m_pw;
-        private String m_name;
+        private String u_id;
+        private String u_pw;
+        private String u_name;
 }

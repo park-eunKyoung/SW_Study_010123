@@ -22,7 +22,7 @@
     <select id="getSecurityPw"  resultType="java.lang.String">
         select m_pw from member where m_id=#{mId}
     </select>
-    <select id="getMemerInfo" resultType="com.icia.board.dto.MemberDto">
+    <select id="getMemberInfo" resultType="com.icia.board.dto.MemberDto">
         select m.m_id, m.m_name, m.m_point, g.g_name
         from member m join grade g
         on m.m_point between g.g_lowpoint and g.g_highpoint

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>-->
+    <script defer th:src="@{/js/common.js}"></script>
+
+    <script th:inline="javascript">
+        const m = [[${msg}]]
+        const member = [[${session.member}]]
+        $(() => {
+            msgPrint()
+            loginStatus()
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <th:block th:replace="~{fragments::header}"></th:block>
+    <section>
+        <div class="content">
+            <div class="write-form">
+                <div class="user-info">
+                    <div class="user-info-sub">
+                        <p th:text="|등급 [${session.member.g_name}]|"></p>
+                        <p th:text="|POINT [${session.member.m_point}]|"></p>
+                    </div>
+                </div>
+                <h2 class="login-header">상세 보기</h2>
+                <div>
+                    <div class="t_content p-15">NUM</div>
+                    <div class="d_content p-85" th:text="${board.b_num}">글번호</div>
+                </div>
+                <div>
+                    <div class="t_content p-15">WRITER</div>
+                    <div class="d_content p-35" th:text="${board.b_writer}">글쓴이</div>
+                    <div class="t_content p-15">DATE</div>
+                    <div class="d_content p-35" th:text="${board.b_date}">등록일시</div>
+                </div>
+                <div>
+                    <div class="t_content p-15">TITLE</div>
+                    <div class="d_content p-85" th:text="${board.b_title}">제목</div>
+                </div>
+                <div>
+                    <div class="t_content p-15 content_h">CONTENTS</div>
+                    <div class="d_content p-85 content_h" th:text="${board.b_contents}">글내용</div>
+                    <!-- summernote form태그없을때는 div, form태그시는 textarea -->
+                </div>
+            </div>
+        </div>  <!-- content end -->
+        <!-- 첨부파일 영역 -->
+        <!-- 버튼 영역-->
+        <div class="btn-area">
+            <button class="btn-write" id="upbtn"
+                    th:onclick="'upload_board('+${board.b_num}+')'">U
+            </button>
+            <!--                    -->
+            <button class="btn-write" id="delbtn"
+                    th:data-bnum="${board.b_num}"
+                    onclick="delete_board(this)">D
+                <!-- delete_board('icia')  -->
+            </button>
+
+            <button class="btn-sub" onclick="backbtn()">B</button>
+        </div>
+        <!-- 댓글 입력 양식-->
+        <form id="rform"  class="write-form" >
+            <!-- 게시글 정보(글번호), 댓글 내용, 접속자(작성자) -->
+            <input type="hidden" name="r_bnum" id="r_bnum"
+                   th:value="${board.b_num}">
+            <textarea name="r_content" rows="3" cols="80" class="write-input ta"
+                      id="r_content" placeholder="댓글을 적어주세요."></textarea>
+            <input type="hidden" name="r_writer" id="r_writer"
+                   th:value="${session.member.m_id}">
+            <input type="button" value="댓글 전송"
+                   class="btn-write" onclick="replyInsert()"
+                   style="width:100%; margin-bottom: 30px;">
+        </form>
+        <!-- 댓글 리스트 출력 영역-->
+        <table style="width: 50%" th:align="center">
+            <!-- 제목 테이블 -->
+            <tr class="rtbl-head">
+                <td class="p-20">WRITER</td>
+                <td class="p-50">CONTENT</td>
+                <td class="p-30">DATE</td>
+            </tr>
+        </table>
+        <!-- 댓글 리스트 -->
+        <table style="width: 50%;" id="rtable" th:align="center">
+            <th:block th:unless="${#lists.isEmpty(rList)}">
+                <th:block th:each="reply:${rList}">
+                    <tr>
+                        <td class="p-20" th:text="${reply.r_writer}"></td>
+                        <td class="p-50" th:text="${reply.r_content}"></td>
+                        <td class="p-30" th:text="${reply.r_date}"></td>
+                    </tr>
+                </th:block>
+            </th:block>
+        </table>
+    </section>
+    <th:block th:replace="~{fragments::footer}"></th:block>
+</div> <!--wrap end -->
+<script th:inline="javascript">
+    console.log("rList : ",[[${rList}]]);
+    function upload_board(b_num){
+        console.log('update b_num:'+b_num);
+    }
+    function delete_board(button){
+        //let writer=button.getAttribute("data-writer")
+        let bnum=$(button).attr("data-bnum")
+        console.log('delete bnum:',bnum);
+    }
+    function backbtn(){
+        let url = "/board?"
+        let col = [[${session?.sDto?.colname}]] // 없으면 null
+        let keyw = [[${session?.sDto?.keyword}]] // 없으면 null
+
+        if(col == null){
+            url+=`pageNum=`+[[${session?.pageNum}]]
+        }else{
+            url+=`colname=`+[[${session?.sDto?.colname}]]+`&keyword=`+[[${session?.sDto?.keyword}]]
+            +`&pageNum=`+[[${session?.sDto?.pageNum}]]
+        }
+        //console.log('url:',url)
+        location.href=url;
+    }
+
+    function replyInsert(){
+        let data = {};
+        data.r_content = $('#r_content').val();
+        data.r_bnum = $('#r_bnum').val();
+        data.r_writer=[[${session.member.m_id}]];
+        console.log('data : ',data);
+        //---------------------------------------------------------------------------------
+        //axios({
+        //method: 'post', //post, delete, put(전체컬럼변경), patch(일부컬럼변경)
+        //url: '/board/reply?r_bnum='+$('#r_bnum').val(),
+        //data: {r_bnum:$('#r_bnum').val()},
+        //url: '/board/reply',
+        //1. urlEncodede방식,특수문자(공백, %, ?, =, #, /, &)포함된 경우 url인코딩해서 서버에 넘겨야 함.
+        //params 만 단독전달시 get만 허용, Content-Type 자동으로 설정됨
+        //params: data,   //localhost?r_bnum=38&r_contents=aaaa
+
+        //1.js객체를 전달시 자동설정됨 Content-Type' : 'application/json
+        //data: data,
+
+        //2.stringify시 Content-Type을 명시적으로 설정해야함.
+        //data: JSON.stringify(data),  //post시 body에 담아서 전달
+        //headers:{'Content-Type' : 'application/json'}
+
+        // }).then(res => console.log(res))
+        //     .catch(err => console.log(err))
+
+        // 1. axios.post 메소드
+        // axios.post('/board/reply', data)
+        //     .then(res => console.log('res:', res))
+        //     .catch(err => console.log('err:', err));
+
+        //2.axios.get 메소드
+        // axios.get('/board/reply', {params: {data}})
+        //     .then(res => console.log('res:', res))
+        //     .catch(err => console.log('err:', err));
+
+        //3.formData객체 전송 방법
+        // const formData = new FormData();
+        // formData.append('file', file);
+        // axios.post('/api/upload', formData, {
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data',
+        //     },
+        // });
+
+        //---------------------------------------------------------------------------------
+        $.ajax({
+            method: 'post',   // get, post, delete, put(전체필드 변경), patch(일부 column 변경)
+            // url: '/board/reply?r_bnum=' + $('#r_bnum').val(),   // Query String 방식
+            url: '/board/reply',
+            // data: {r_bnum: $('#r_bnum').val()},
+            data: data,   // data: {r_bnum: 100, r_contents: '댓글1', r_writer: 'aaa'}
+            // data: JSON.stringify(data),   // Controller에 @RequestBody
+            // data: $('#rfom').serialize(),   // ?r_contents: '댓글1', r_writer: 'aaa'
+            // dataType: 'json',   // 'text(html)', 'xml', 'jsonp'   // 생략가능
+            // contentType: "application/json;charset=UTF-8"   // contentType: "application/x-www-form-urlencoded"   // header의 contentType의 기본값
+        }).done(res => {
+            console.log('res : ', res);
+            replyListShow(res);
+        }).fail(err => console.log('err : ', err));
+
+        }
+        //댓글 리스트를 비동기로 가져오기
+        $.ajax({
+        method: "get",
+        url:`/board/reply?r_bnum=[[${board.b_num}]]`,
+        //data:{r_bnum:[[${board.b_num}]]}
+        }).done(res=>{
+            console.log(res);
+            replyListShow(res);
+        }) //res -> 댓글리스트 //replyList 응답
+            .fail(err=>console.log(err));
+
+        function replyListShow(replyList){
+        console.log("replyList:",replyList);
+        let rList='';
+        for(const reply of replyList){
+            rList+=`<tr><td class="p-20">${reply.r_writer}</td>
+                    <td class="p-50">${reply.r_content}</td>
+                    <td class="p-30">${reply.r_date}</td></tr>`;
+        }
+        $('#rtable').html(rList);
+        $('#r_content').focus();
+    }
+</script>
+</body>
+</html>

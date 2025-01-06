@@ -1,7 +1,9 @@
 package com.icia.board.dao;
 
 import com.icia.board.dto.BoardDto;
+import com.icia.board.dto.ReplyDto;
 import com.icia.board.dto.SearchDto;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -20,8 +22,17 @@ public interface BoardDao {
     List<BoardDto> getBoardListSearch(SearchDto searchDto);
 
     @Select("select * from board")
-    List<BoardDto> getBoardListAll();
+    List<BoardDto> getBoardListAll(Map<String, Integer> pageMap);
 
 
     int getBoardCount(SearchDto searchDto);
+
+    @Delete("DELETE FROM BOARD WHERE B_NUM=#{b_num}")
+    boolean boardDelete(Integer b_num);
+
+    BoardDto getBoardDtail(Integer b_num);
+
+    List<ReplyDto> getReplyList(Integer b_num);
+
+    boolean insertReply(ReplyDto replyDto);
 }
