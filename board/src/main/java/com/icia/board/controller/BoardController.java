@@ -1,19 +1,20 @@
 package com.icia.board.controller;
 
 import com.icia.board.dto.BoardDto;
-import com.icia.board.dto.MemberDto;
+import com.icia.board.dto.BoardFileDto;
 import com.icia.board.dto.ReplyDto;
 import com.icia.board.dto.SearchDto;
 import com.icia.board.service.BoardService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
 import java.util.List;
 
 @Slf4j
@@ -22,6 +23,11 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardService boardService;
+
+    @GetMapping("/viewimg")
+    public String viewImg(Model model) {
+        return "board/viewimg";
+    }
 
     //localhost/board
     //@GetMapping ("/list")
@@ -99,7 +105,12 @@ public class BoardController {
         if (board == null) {
             return "redirect:/board";
         } else {
-            List<ReplyDto> rList = boardService.getReplyList(b_num);
+            //댓글리스트 가져오기 동기 or 비동기
+            //List<ReplyDto> rList = boardService.getReplyList(b_num);
+            //첨부파일 리스트 가져오기
+            List<BoardFileDto> boardFileDtoList = boardService.getBoardFileList(b_num);  //0~n개
+            log.info("===boardFileDtoList.size:{}", boardFileDtoList.size());
+            model.addAttribute("boardFileDtoList", boardFileDtoList);
             model.addAttribute("board", board);
             //model.addAttribute("rList", rList);
             return "board/detail";
@@ -107,11 +118,41 @@ public class BoardController {
     }
     @GetMapping("/write")
     public String write() {
-        return "/board/write";
+        return "board/write";
     }
+    //    @PostMapping("/write")  // @RequestPart : Multipart-file을 받을 때, 생략가능함.
+//    public String write(BoardDto board, @RequestPart List<MultipartFile> attachments) {
+//        log.info("===write board:{}", board);  //b_writer, b_title, b_contents
+//        log.info("===write attachments:{}", attachments.size());  //
+//        for (MultipartFile file : attachments) {
+//        log.info("====file:{}", file.getOriginalFilename());
+//        return "redirect:/board";    //get만 허용
+//    }
     @PostMapping("/write")
-    public String write(BoardDto boardDto) {
-        //DB에 글을 저장
-        return "redirect:/board/list"; //Get만 허용
+    public String write(BoardDto boardDto, HttpSession httpsession, RedirectAttributes redirectAttributes) {
+        // tomcat rootPath : main/webapp
+        // realPath : main/webapp/upload
+            log.info("===write board :{}", boardDto);
+            //log.info("=====write board.attachments.size :{}", boardDto.getAttachments().size());
+            for(MultipartFile file:boardDto.getAttachments()){
+                log.info("=====file :{}", file.getOriginalFilename());
+                log.info("=====file.getSize() :{}", file.getSize());
+            }
+        String realPath = httpsession.getServletContext().getRealPath("/");
+        log.info("rootPath:{}", realPath);
+        realPath+="upload/";
+        log.info("realPath:{}", realPath);
+        File dir =  new File(realPath);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        boolean result = boardService.boardWrite(boardDto,httpsession);
+        if(result){
+            redirectAttributes.addFlashAttribute("msg","글쓰기 성공");
+            return "redirect:/board";
+        }else{
+            redirectAttributes.addFlashAttribute("msg","글쓰기 실패");
+            return "redirect:/board/write";
+        }
     }
 }

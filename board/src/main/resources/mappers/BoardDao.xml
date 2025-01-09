@@ -5,9 +5,22 @@
     <insert id="insertDummyData">
         insert into board values(null, #{b_title}, #{b_contents}, #{b_writer},default,default)
     </insert>
+
     <insert id="insertReply">
         insert into Reply values(null,#{r_bnum},#{r_content},#{r_writer},default)
     </insert>
+
+    <insert id="boardWriteSelectkey" useGeneratedKeys="true" keyProperty="b_num">
+            insert into board values (null,#{b_title},#{b_contents},#{b_writer},default,default)
+<!--            <selectKey keyProperty="b_num" resultType="Integer" order="AFTER">-->
+<!--                select last_insert_id()-->
+<!--            </selectKey>-->
+    </insert>
+    <insert id="fileInsertMap" parameterType="HashMap">
+        insert into boardfile
+        values (null,#{b_num},#{oriFileName},#{sysFileName})
+    </insert>
+
     <select id="getBoardList" resultType="com.icia.board.dto.BoardDto">
         select b_num,b_title,b_writer,b_date,b_view from board order by b_num desc limit #{startIndex}, #{listCount}
     </select>
@@ -27,11 +40,13 @@
         where ${colname} like concat('%',#{keyword},'%')
         </if>
     </select>
+
     <select id="getBoardDtail" resultType="com.icia.board.dto.BoardDto">
         select b_num, b_title, b_contents, b_writer, b_view,
                date_format(b_date,'%Y-%m-%d %H:%i:%s') b_date
                  from board where b_num=#{b_num}
     </select>
+
     <select id="getReplyList" resultType="com.icia.board.dto.ReplyDto">
         select r_writer, r_content, r_date from Reply where r_bnum=#{r_bnum}
         order by r_date desc

@@ -1,6 +1,7 @@
 package com.icia.board.dao;
 
 import com.icia.board.dto.BoardDto;
+import com.icia.board.dto.BoardFileDto;
 import com.icia.board.dto.ReplyDto;
 import com.icia.board.dto.SearchDto;
 import org.apache.ibatis.annotations.Delete;
@@ -35,4 +36,11 @@ public interface BoardDao {
     List<ReplyDto> getReplyList(Integer b_num);
 
     boolean insertReply(ReplyDto replyDto);
+
+    boolean boardWriteSelectkey(BoardDto boardDto);
+
+    boolean fileInsertMap(Map<String, String> fMap);
+
+    @Select("select bf_orifilename, bf_sysfilename from boardfile where bf_bnum=#{bNum}")
+    List<BoardFileDto> getBoardFileList(Integer bNum);
 }

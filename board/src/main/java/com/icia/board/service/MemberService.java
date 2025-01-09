@@ -12,17 +12,17 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class MemberService {
     //@Autowired
-    private final MemberDao mDao;
+    private final MemberDao memberDao;
 
     public MemberDto login(MemberDto memberDto) {
-        String encoPw = mDao.getSecurityPw(memberDto.getM_id());
+        String encoPw = memberDao.getSecurityPw(memberDto.getM_id());
         log.info("encoPw:{}", encoPw);
         if(encoPw!=null){
             BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
             log.info("====아이디 존재함");
             if(pwEncoder.matches(memberDto.getM_pw(),encoPw)){
                 log.info("====로그인 성공");
-                return mDao.getMemberInfo(memberDto.getM_id());
+                return memberDao.getMemberInfo(memberDto.getM_id());
             }else{
                 log.info("====비번 오류");
                 //return null;
@@ -36,13 +36,17 @@ public class MemberService {
 
     public boolean join(MemberDto memberDto) {
         //이미 사용중인 아이디: true
-        if (mDao.isUsedId(memberDto.getM_id())) {
+        if (memberDao.isUsedId(memberDto.getM_id())) {
             return false;  //회원가입 실패
         }
         // Encoder(암호화)  <----> Decoder(복호화)
         //1111->sdkjflkdsjkfjsdlkjflkdsjaf
         BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
         memberDto.setM_pw(pwEncoder.encode(memberDto.getM_pw()));
-        return mDao.join(memberDto);  //성공:true, 실패:false
+        return memberDao.join(memberDto);  //성공:true, 실패:false
+    }
+
+    public boolean isUsedId(String mId) {
+        return memberDao.isUsedId(mId);
     }
 }

@@ -18,4 +18,5 @@ public interface MemberDao {
     String getSecurityPw(String mId);
 
 
+    void updateMemberPoint(MemberDto memberDto);
 }

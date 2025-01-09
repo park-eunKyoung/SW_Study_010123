@@ -48,7 +48,7 @@ public class MemberController {
             } else {
                 return "redirect:/board";
             }
-//            return "redirect:/board";
+            //return "redirect:/board";
             //return "redirect:/member/login";
         } else {//end login ok
 
